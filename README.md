@@ -42,6 +42,9 @@ A directory that is used at runtime to hold information about the state/deployme
 **${HOME}/security**        
 Scripts related to the security of the webserver   
 
+**${HOME}/utilities**  
+Utility scripts that help with the functioning of the webserver
+
 
 
 
