@@ -73,7 +73,7 @@ exec 1>>${HOME}/logs/${out_file}
 err_file="initialbuild/webserver-build-err-`/bin/date | /bin/sed 's/ //g'`"
 exec 2>>${HOME}/logs/${err_file}
 
-/bin/echo "${0} `/bin/date`: Building a new authorisation server" 
+/bin/echo "${0} `/bin/date`: Building a new reverse proxy server" 
 
 WEBSITE_URL="`${HOME}/utilities/config/ExtractConfigValue.sh 'WEBSITEURL'`"
 GIT_EMAIL_ADDRESS="`${HOME}/utilities/config/ExtractConfigValue.sh 'GITEMAILADDRESS'`"
@@ -83,8 +83,6 @@ MACHINE_TYPE="`${HOME}/utilities/config/ExtractConfigValue.sh 'MACHINETYPE'`"
 GIT_USER="`${HOME}/utilities/config/ExtractConfigValue.sh 'GITUSER' | /bin/sed 's/#/ /g'`"
 
 ROOT_DOMAIN="`/bin/echo ${WEBSITE_URL} | /usr/bin/awk -F'.' '{$1=""}1' | /bin/sed 's/^ //g' | /bin/sed 's/ /./g'`"
-${HOME}/utilities/config/StoreConfigValue.sh "WEBSITEURLORIGINAL" "${WEBSITE_URL}"
-WEBSITE_URL="`/bin/echo ${WEBSITE_URL} | /bin/sed 's/[^.]*./auth./'`"
 ${HOME}/utilities/config/StoreConfigValue.sh "WEBSITEURL" "${WEBSITE_URL}"
 
 #Initialise Git
