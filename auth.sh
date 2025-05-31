@@ -2,7 +2,7 @@
 ######################################################################################################
 # Author: Peter Winter
 # Date :  9/4/2016
-# Description: This is the script which builds a webserver
+# Description: This is the script which builds a webserver for use as an authenticator
 ######################################################################################################
 # License Agreement:
 # This file is part of The Agile Deployment Toolkit.
