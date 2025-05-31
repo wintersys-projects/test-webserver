@@ -23,4 +23,4 @@
 
 webserver_ip="${1}"
 
-/bin/sed -i "/${webserver_ip}/d" ./2
+/bin/sed -i "/${webserver_ip}/d" /etc/nginx/sites-available/site-available.conf
