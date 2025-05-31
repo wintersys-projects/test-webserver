@@ -2,10 +2,8 @@
 #####################################################################################
 # Author: Peter Winter
 # Date :  9/4/2016
-# Description: This will update the current list of active webserver IP addresses 
-# in a reverse proxy machine. IP addresses can either be added or removed based
-# on whether a new webserver has been provisioned or an old webserver has been shutdown
-# or terminated. 
+# Description: This will add a webserver UP address to  the current list of active 
+# webserver IP addresses in a reverse proxy machine. 
 #####################################################################################
 # License Agreement:
 # This file is part of The Agile Deployment Toolkit.
