@@ -23,4 +23,6 @@
 
 webserver_ip="${1}"
 
-/bin/sed -i "/${webserver_ip}/d" /etc/nginx/sites-available/site-available.conf
+WEBSITE_NAME="`${HOME}/utilities/config/ExtractConfigValue.sh 'WEBSITEDISPLAYNAME'`"
+
+/bin/sed -i "/${webserver_ip}/d" /etc/nginx/sites-available/${WEBSITE_NAME}
