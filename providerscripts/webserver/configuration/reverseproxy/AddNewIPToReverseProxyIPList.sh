@@ -23,4 +23,4 @@
 
 webserver_ip="${1}"
 
-/bin/sed -i "/XXXXWEBSERVERIPXXXX/a 111.111.111.111:443" /etc/nginx/sites-available/Proxy.cnf
+/bin/sed -i "/XXXXWEBSERVERIPXXXX/a ${webserver_ip}:443" /etc/nginx/sites-available/Proxy.cnf
