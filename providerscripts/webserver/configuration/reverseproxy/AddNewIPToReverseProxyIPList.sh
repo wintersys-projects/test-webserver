@@ -23,4 +23,4 @@
 
 webserver_ip="${1}"
 
-/bin/sed -i "/XXXXWEBSERVERIPXXXX/a ${webserver_ip}:443" /etc/nginx/sites-available/site-available.conf
+/bin/sed -i "/XXXXWEBSERVERIPXXXX/a         server ${webserver_ip}:443;" /etc/nginx/sites-available/site-available.conf
