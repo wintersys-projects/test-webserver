@@ -24,5 +24,7 @@
 webserver_ip="${1}"
 
 WEBSITE_NAME="`${HOME}/utilities/config/ExtractConfigValue.sh 'WEBSITEDISPLAYNAME'`"
+php_port="`${HOME}/utilities/config/ExtractBuildStyleValues.sh "PHP" "stripped" | /usr/bin/awk -F'|' '{print $NF}'`"
 
-/bin/sed -i "/XXXXWEBSERVERIPXXXX/a         server ${webserver_ip}:443;" /etc/nginx/sites-available/${WEBSITE_NAME}
+/bin/sed -i "/XXXXWEBSERVERIPHTTPSXXXX/a         server ${webserver_ip}:443;" /etc/nginx/sites-available/${WEBSITE_NAME}
+/bin/sed -i "/XXXXWEBSERVERIPPHPXXXX/a         server ${webserver_ip}:${php_port};" /etc/nginx/sites-available/${WEBSITE_NAME}
