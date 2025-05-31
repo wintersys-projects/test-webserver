@@ -1,6 +1,6 @@
 #!/bin/sh
 ######################################################################################################
-# Description: This script will install the apache webserver
+# Description: This script will install the chosen webserver configured as an authenticator
 # Author: Peter Winter
 # Date: 17/01/2017
 #######################################################################################################
