@@ -123,7 +123,7 @@ ${HOME}/providerscripts/email/SendEmail.sh "A WEBSERVER HAS BEEN SUCCESSFULLY BU
 ${HOME}/utilities/housekeeping/CleanupAfterBuild.sh
 
 /bin/touch ${HOME}/runtime/DONT_MESS_WITH_THESE_FILES-SYSTEM_BREAK
-/usr/bin/touch ${HOME}/runtime/AUTHENTICATOR_READY
+/usr/bin/touch ${HOME}/runtime/REVERSEPROXY_READY
 
 /bin/chmod 755 /var/www/html
 /bin/chmod 400 /var/www/html/.htaccess
