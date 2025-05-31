@@ -44,6 +44,10 @@ then
 	then
 		${HOME}/providerscripts/webserver/configuration/InstallNginxConfigurationForAuthenticator.sh
 	fi
+	if ( [ "`${HOME}/utilities/config/CheckConfigValue.sh WEBSERVERCHOICE:LIGHTTPD`" = "1" ] )
+	then
+		${HOME}/providerscripts/webserver/configuration/InstallLighttpdConfigurationForAuthenticator.sh
+	fi
 fi
 
 if ( [ "${BUILDOS}" = "debian" ] )
@@ -56,16 +60,9 @@ then
     then
         ${HOME}/providerscripts/webserver/configuration/InstallNginxConfigurationForAuthenticator.sh
     fi
+    if ( [ "`${HOME}/utilities/config/CheckConfigValue.sh WEBSERVERCHOICE:LIGHTTPD`" = "1" ] )
+    then
+        ${HOME}/providerscripts/webserver/configuration/InstallLighttpdConfigurationForAuthenticator.sh
+    fi
 fi
 
-if ( [ "${BUILDOS}" = "debian" ] )
-then
-    if ( [ "`${HOME}/utilities/config/CheckConfigValue.sh WEBSERVERCHOICE:LIGHTTPD`" = "1" ] )
-    then
-        ${HOME}/providerscripts/webserver/configuration/InstallLighttpdConfigurationForAuthenticator.sh
-    fi
-    if ( [ "`${HOME}/utilities/config/CheckConfigValue.sh WEBSERVERCHOICE:LIGHTTPD`" = "1" ] )
-    then
-        ${HOME}/providerscripts/webserver/configuration/InstallLighttpdConfigurationForAuthenticator.sh
-    fi
-fi
