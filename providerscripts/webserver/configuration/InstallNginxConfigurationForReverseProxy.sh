@@ -2,8 +2,8 @@
 #####################################################################################
 # Author : Peter Winter
 # Date   : 13/07/2016
-# Description : This script will perform a base installation of Nginx from repo. You are welcome
-# to modify it to your needs.
+# Description : This script will perform a base installation of Nginx for use as a reverse proxy. 
+# You are welcome to modify it to your needs.
 #####################################################################################
 # License Agreement:
 # This file is part of The Agile Deployment Toolkit.
