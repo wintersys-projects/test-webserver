@@ -25,4 +25,4 @@ webserver_ip="${1}"
 
 WEBSITE_NAME="`${HOME}/utilities/config/ExtractConfigValue.sh 'WEBSITEDISPLAYNAME'`"
 
-/bin/sed -i "/XXXXWEBSERVERIPXXXX/a         server ${webserver_ip}:443;" /etc/nginx/sites-available/site-available.conf
+/bin/sed -i "/XXXXWEBSERVERIPXXXX/a         server ${webserver_ip}:443;" /etc/nginx/sites-available/${WEBSITE_NAME}
