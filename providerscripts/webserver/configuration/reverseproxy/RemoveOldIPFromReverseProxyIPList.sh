@@ -26,3 +26,5 @@ webserver_ip="${1}"
 WEBSITE_NAME="`${HOME}/utilities/config/ExtractConfigValue.sh 'WEBSITEDISPLAYNAME'`"
 
 /bin/sed -i "/${webserver_ip}/d" /etc/nginx/sites-available/${WEBSITE_NAME}
+  ${HOME}/providerscripts/webserver/ReloadWebserver.sh
+
