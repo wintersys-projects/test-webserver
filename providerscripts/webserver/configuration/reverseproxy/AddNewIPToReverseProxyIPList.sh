@@ -30,4 +30,5 @@ if ( [ "`/bin/grep ${webserver_ip} /etc/nginx/sites-available/${WEBSITE_NAME}`" 
 then
   /bin/sed -i "/XXXXWEBSERVERIPHTTPSXXXX/a         server ${webserver_ip}:443;" /etc/nginx/sites-available/${WEBSITE_NAME}
   /bin/sed -i "/XXXXWEBSERVERIPPHPXXXX/a         server ${webserver_ip}:${php_port};" /etc/nginx/sites-available/${WEBSITE_NAME}
+  ${HOME}/providerscripts/webserver/ReloadWebserver.sh
 fi
