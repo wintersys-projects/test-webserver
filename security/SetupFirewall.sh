@@ -53,6 +53,13 @@ then
 	firewall="iptables"
 fi
 
+ssl_access_required="0"
+
+if ( ( [ "${REVERSE_PROXY}" = "1" ] && [ "`/usr/bin/hostname | /bin/grep '^rp-'`" != "" ] ) || ( [ "${REVERSE_PROXY}" != "1" ] && [ "`/usr/bin/hostname | /bin/grep '^ws-`" != "" ] ) || [ "`/usr/bin/hostname | /bin/grep '^auth-`" != "" ] )
+then
+	ssl_access_required="1"
+fi
+
 if ( [ "${firewall}" = "ufw" ] && [ ! -f ${HOME}/runtime/FIREWALL-ACTIVE ] )
 then
 	/usr/bin/yes | /usr/sbin/ufw reset
@@ -113,7 +120,7 @@ fi
 
 if ( [ "`${HOME}/utilities/config/CheckConfigValue.sh AUTHENTICATIONSERVER:1`" != "1" ] || [ "`/usr/bin/hostname | /bin/grep '^auth'`" != "" ] )
 then
-	if ( [ "${DNS_CHOICE}" = "cloudflare" ] )
+	if ( [ "${DNS_CHOICE}" = "cloudflare" ] && [ "${ssl_access_required}" = "1" ] )
 	then
 		if ( [ "${firewall}" = "ufw" ] )
 		then
@@ -139,7 +146,7 @@ then
 		fi
 	fi
 
-	if ( [ "${DNS_CHOICE}" = "digitalocean" ] || [ "${DNS_CHOICE}" = "exoscale" ] || [ "${DNS_CHOICE}" = "linode" ] || [ "${DNS_CHOICE}" = "vultr" ]  )
+	if ( ( [ "${DNS_CHOICE}" = "digitalocean" ] || [ "${DNS_CHOICE}" = "exoscale" ] || [ "${DNS_CHOICE}" = "linode" ] || [ "${DNS_CHOICE}" = "vultr" ] ) && [ "${ssl_access_required}" = "1" ] )
 	then
 		if ( [ "${firewall}" = "ufw" ] )
 		then
