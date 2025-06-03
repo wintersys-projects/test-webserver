@@ -23,7 +23,7 @@
 
 webserver_ip="${1}"
 
-WEBSITE_NAME="`${HOME}/utilities/config/ExtractConfigValue.sh 'WEBSITENAME'`"
+WEBSITE_NAME="`${HOME}/utilities/config/ExtractConfigValue.sh 'WEBSITEDISPLAYNAME'`"
 php_port="`${HOME}/utilities/config/ExtractBuildStyleValues.sh "PHP" "stripped" | /usr/bin/awk -F'|' '{print $NF}'`"
 
 if ( [ "`/bin/grep ${webserver_ip} /etc/nginx/sites-available/${WEBSITE_NAME}`" = "" ] )
