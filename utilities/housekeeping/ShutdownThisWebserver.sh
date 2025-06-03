@@ -33,7 +33,7 @@ if ( [ "`${HOME}/providerscripts/datastore/configwrapper/ListFromConfigDatastore
 then
 	if ( [ "`${HOME}/providerscripts/datastore/configwrapper/AgeOfConfigFile.sh BACKUP_RUNNING`" -gt "300" ] )
 	then
-		${HOME}/providerscripts/datastore/configwrapper/DeletetFromConfigDatastore.sh BACKUP_RUNNING
+		${HOME}/providerscripts/datastore/configwrapper/DeleteFromConfigDatastore.sh BACKUP_RUNNING
 	fi
 fi
 
@@ -46,7 +46,7 @@ fi
 
 ${HOME}/application/backupscripts/Backup.sh "shutdown"
 
-${HOME}/providerscripts/datastore/configwrapper/DeletetFromConfigDatastore.sh BACKUP_RUNNING
+${HOME}/providerscripts/datastore/configwrapper/DeleteFromConfigDatastore.sh BACKUP_RUNNING
 
 # Put any shutdown processing that you need here
 
