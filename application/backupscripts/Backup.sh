@@ -99,7 +99,7 @@ datastore="`/bin/echo ${WEBSITE_URL} | /bin/sed 's/\./-/g'`-${period}"
 ${HOME}/providerscripts/datastore/MountDatastore.sh "${datastore}"
 
 
-if ( [ ! -f ${HOME}/livebackup ] )
+if ( [ ! -d ${HOME}/livebackup ] )
 then
         /bin/mkdir ${HOME}/livebackup
 else
