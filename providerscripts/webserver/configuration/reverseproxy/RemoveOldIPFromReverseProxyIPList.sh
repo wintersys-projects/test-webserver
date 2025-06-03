@@ -23,7 +23,7 @@
 
 webserver_ip="${1}"
 
-WEBSITE_NAME="`${HOME}/utilities/config/ExtractConfigValue.sh 'WEBSITENAME'`"
+WEBSITE_NAME="`${HOME}/utilities/config/ExtractConfigValue.sh 'WEBSITEDISPLAYNAME'`"
 
 if ( [ "`/bin/grep ${webserver_ip} /etc/nginx/sites-available/${WEBSITE_NAME}`" != "" ] )
 then
