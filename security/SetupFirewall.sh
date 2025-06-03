@@ -57,7 +57,7 @@ fi
 
 ssl_access_required="0"
 
-if ( ( [ "${REVERSE_PROXY}" = "1" ] && [ "`/usr/bin/hostname | /bin/grep '^rp-'`" != "" ] ) || ( [ "${REVERSE_PROXY}" != "1" ] && [ "`/usr/bin/hostname | /bin/grep '^ws-'`" != "" ] ) || [ "`/usr/bin/hostname | /bin/grep '^auth-'`" != "" ] )
+if ( [ "`/usr/bin/hostname | /bin/grep '^rp-'`" != "" ] || ( [ "${REVERSE_PROXY}" != "1" ] && [ "`/usr/bin/hostname | /bin/grep '^ws-'`" != "" ] ) || [ "`/usr/bin/hostname | /bin/grep '^auth-'`" != "" ] )
 then
         ssl_access_required="1"
 fi
