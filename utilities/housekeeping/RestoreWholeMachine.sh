@@ -41,25 +41,25 @@ fi
 
 backup_bucket="`/bin/echo "${WEBSITE_URL}"-whole-machine-backup | /bin/sed 's/\./-/g'`-${machine_type}"
 
-if ( [ ! -d ${HOME}/dump ] )
+if ( [ ! -d /tmp/dump ] )
 then
-        /bin/mkdir ${HOME}/dump
+        /bin/mkdir /tmp/dump
 else
-        /bin/rm -r ${HOME}/dump/* 2>/dev/null
+        /bin/rm -r /tmp/dump/* 2>/dev/null
 fi
 
 archives="`${HOME}/providerscripts/datastore/ListFromDatastore.sh ${backup_bucket}`"
 
 for archive in ${archives}
 do
-        ${HOME}/providerscripts/datastore/GetFromDatastore.sh ${backup_bucket}/${archive} ${HOME}/dump
+        ${HOME}/providerscripts/datastore/GetFromDatastore.sh ${backup_bucket}/${archive} /tmp/dump
 done
 
 archive_list=""
 
 for archive in ${archives}
 do
-        archive_list="${archive_list} ${HOME}/dump/${archive}"
+        archive_list="${archive_list} /tmp/dump/${archive}"
 done
 
 for archive in ${archive_list}
