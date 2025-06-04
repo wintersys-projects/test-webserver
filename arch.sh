@@ -5,3 +5,6 @@
 ${HOME}/providerscripts/datastore/InitialiseDatastoreConfig.sh
 ${HOME}/providerscripts/datastore/InitialiseAdditionalDatastoreConfigs.sh
 
+
+${HOME}/utilities/housekeeping/RestoreWholeMachine.sh
+
