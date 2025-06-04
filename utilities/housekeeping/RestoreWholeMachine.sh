@@ -52,7 +52,7 @@ archives="`${HOME}/providerscripts/datastore/ListFromDatastore.sh ${backup_bucke
 
 for archive in ${archives}
 do
-        ${HOME}/providerscripts/datastore/GetFromDatastore.sh ${backup_bucket}/${archive} ${HOME}/dump &
+        ${HOME}/providerscripts/datastore/GetFromDatastore.sh ${backup_bucket}/${archive} ${HOME}/dump
 done
 
 archive_list=""
