@@ -24,6 +24,7 @@
 #set -x
 
 
+HOME="`/bin/cat /home/homedir.dat`"
 WEBSITE_URL="`${HOME}/utilities/config/ExtractConfigValue.sh 'WEBSITEURL'`"
 SERVER_USER_PASSWORD="`${HOME}/utilities/config/ExtractConfigValue.sh 'SERVERUSERPASSWORD'`"
 SUDO="/bin/echo ${SERVER_USER_PASSWORD} | /usr/bin/sudo -S -E"
@@ -55,7 +56,7 @@ else
         /bin/rm -r /tmp/dump/*
 fi
 
-sudo /usr/bin/tar cvpzf - --exclude='backup.tar.gz' --exclude='dev/*' --exclude='proc/*' --exclude='sys/*' --exclude='tmp/*' --exclude='run/*' --exclude='mnt/*' --exclude='media/*' --exclude='lost+found/*' / | /usr/bin/split --bytes=50MB - /tmp/dump/backup.tar.gz.
+${SUDO} /usr/bin/tar cvpzf - --exclude='backup.tar.gz' --exclude='dev/*' --exclude='proc/*' --exclude='sys/*' --exclude='tmp/*' --exclude='run/*' --exclude='mnt/*' --exclude='media/*' --exclude='lost+found/*' / | /usr/bin/split --bytes=50MB - /tmp/dump/backup.tar.gz.
 
 archives="`/bin/ls /tmp/dump/*backup*`"
 
