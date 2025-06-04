@@ -92,7 +92,7 @@ count="1"
 
 for dir in ${dirs}
 do
-        /usr/bin/tar -cvpzf /tmp/dump/backup-${count}.tar.gz --exclude='backup.tar.gz' --exclude='dev/*' --exclude='proc/*' --exclude='sys/*' --exclude='tmp/*' --exclude='run/*' --exclude='mnt/*' --exclude='media/*' --exclude='lost+found/*' --exclude='/var/www/*' /${dir} &
+        /usr/bin/tar -cvpzf /tmp/dump/backup-${count}.tar.gz --exclude='backup.tar.gz' --exclude='dev/*' --exclude='proc/*' --exclude='sys/*' --exclude='tmp/*' --exclude='run/*' --exclude='mnt/*' --exclude='media/*' --exclude='lost+found/*' --exclude='/var/www/*' --exclude "${HOME}/*"  --exclude '/root/*' /${dir} &
         count="`/usr/bin/expr ${count} + 1`"
 done
 
