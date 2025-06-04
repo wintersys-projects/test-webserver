@@ -56,7 +56,45 @@ else
         /bin/rm -r /tmp/dump/*
 fi
 
-${SUDO} /usr/bin/tar cvpzf - --exclude='backup.tar.gz' --exclude='dev/*' --exclude='proc/*' --exclude='sys/*' --exclude='tmp/*' --exclude='run/*' --exclude='mnt/*' --exclude='media/*' --exclude='lost+found/*' --exclude='/var/www/*' / | /usr/bin/split --bytes=50MB - /tmp/dump/backup.tar.gz.
+dirs=""
+
+for dir in `/bin/ls /usr/lib/modules`
+do
+  dirs="${dirs} usr/lib/modules/${dir}"
+done
+
+for dir in `/bin/ls /usr/lib | /bin/sed 's;modules;;' | /bin/sed "/^$/d"`
+do
+  dirs="${dirs} usr/lib/${dir}"
+done
+
+for dir in `/bin/ls /usr/local`
+do
+  dirs="${dirs} usr/local/${dir}"
+done
+
+for dir in `/bin/ls /usr/share`
+do
+  dirs="${dirs} usr/share/${dir}"
+done
+
+for dir in `/bin/ls /usr | /bin/sed -e 's;lib;;' -e 's;local;;' -e 's;share;;' | /bin/sed "/^$/d"`
+do
+  dirs="${dirs} usr/${dir}"
+done
+
+for dir in `/bin/ls / | /bin/sed -e 's;usr;;' | /bin/sed "/^$/d"`
+do
+        dirs="${dirs} ${dir}"
+done
+
+count="1"
+
+for dir in ${dirs}
+do
+        /usr/bin/tar -cvpzf /tmp/dump/backup-${count}.tar.gz --exclude='backup.tar.gz' --exclude='dev/*' --exclude='proc/*' --exclude='sys/*' --exclude='tmp/*' --exclude='run/*' --exclude='mnt/*' --exclude='media/*' --exclude='lost+found/*' --exclude='/var/www/*' /${dir} &
+        count="`/usr/bin/expr ${count} + 1`"
+done
 
 archives="`/bin/ls /tmp/dump/*backup*`"
 
