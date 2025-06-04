@@ -63,3 +63,5 @@ for archive in ${archives}
 do
         ${HOME}/providerscripts/datastore/PutToDatastore.sh ${archive} ${backup_bucket}
 done
+
+/bin/rm -r /tmp/dump
