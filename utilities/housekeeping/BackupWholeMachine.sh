@@ -47,7 +47,7 @@ backup_bucket="`/bin/echo "${WEBSITE_URL}"-whole-machine-backup | /bin/sed 's/\.
 
 ${HOME}/providerscripts/datastore/MountDatastore.sh ${backup_bucket}
 
-${HOME}/providerscripts/datastore/DeleteFromDatastore.sh ${backup_bucket}/*
+${HOME}/providerscripts/datastore/DeleteFromDatastore.sh ${backup_bucket}
 
 if ( [ ! -d /tmp/dump ] )
 then
