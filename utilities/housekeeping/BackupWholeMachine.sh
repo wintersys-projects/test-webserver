@@ -56,7 +56,7 @@ else
         /bin/rm -r /tmp/dump/*
 fi
 
-${SUDO} /usr/bin/tar cvpzf - --exclude='backup.tar.gz' --exclude='dev/*' --exclude='proc/*' --exclude='sys/*' --exclude='tmp/*' --exclude='run/*' --exclude='mnt/*' --exclude='media/*' --exclude='lost+found/*' / | /usr/bin/split --bytes=50MB - /tmp/dump/backup.tar.gz.
+${SUDO} /usr/bin/tar cvpzf - --exclude='backup.tar.gz' --exclude='dev/*' --exclude='proc/*' --exclude='sys/*' --exclude='tmp/*' --exclude='run/*' --exclude='mnt/*' --exclude='media/*' --exclude='lost+found/*' --exclude='/var/www/*' / | /usr/bin/split --bytes=50MB - /tmp/dump/backup.tar.gz.
 
 archives="`/bin/ls /tmp/dump/*backup*`"
 
