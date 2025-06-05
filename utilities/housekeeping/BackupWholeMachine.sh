@@ -56,7 +56,7 @@ else
         /bin/rm -r /tmp/dump/*
 fi
 
-excludes="dev proc sys tmp run mnt media lost+found opt root srv"
+excludes="dev proc sys tmp run mnt media lost+found"
 
 includes="`/usr/bin/ls /`"
 
@@ -70,7 +70,7 @@ count1="1"
 
 for include in ${includes}
 do
-        if ( [ -d /${include} ] )
+        if ( [ -d /${include} ] && [ "`/usr/bin/find /${include} -type d -empty`" = "" ] )
         then
                 /usr/bin/tar -cvpzf /tmp/dump/backup-${count}.tar.gz  /${include}/* 
 
