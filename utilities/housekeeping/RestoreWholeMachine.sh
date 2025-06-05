@@ -73,6 +73,7 @@ if ( [ -d /home/backup/runtime ] )
 then
         /bin/cp -r /home/backup/runtime/* ${HOME}/runtime
         /bin/rm -r /home/backup
+        /bin/rm ${HOME}/runtime/INITIAL_CONFIG_SET
 fi
 
 ${HOME}/utilities/security/EnforcePermissions.sh &
