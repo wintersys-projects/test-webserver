@@ -106,4 +106,4 @@ cd /home/${SERVER_USER}/runtime
 /usr/bin/tar -cvp -f /tmp/dump/runtime.tar  --exclude="*webserver_configuration_settings.dat*" --exclude="buildstyles.dat" .
 ${HOME}/providerscripts/datastore/PutToDatastore.sh /tmp/dump/runtime.tar  ${backup_bucket}
 
-#/bin/rm -r /tmp/dump
+/bin/rm -r /tmp/dump
