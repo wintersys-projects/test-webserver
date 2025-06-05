@@ -23,7 +23,6 @@
 #######################################################################################################
 #set -x
 
-
 HOME="`/bin/cat /home/homedir.dat`"
 WEBSITE_URL="`${HOME}/utilities/config/ExtractConfigValue.sh 'WEBSITEURL'`"
 SERVER_USER_PASSWORD="`${HOME}/utilities/config/ExtractConfigValue.sh 'SERVERUSERPASSWORD'`"
@@ -72,20 +71,21 @@ for include in ${includes}
 do
         if ( [ -d /${include} ] && [ "`/usr/bin/find /${include} -type d -empty`" = "" ] )
         then
-                /usr/bin/tar -cvpzf /tmp/dump/backup-${count}.tar.gz  /${include}/* 
+                /usr/bin/tar -cvpzfr /tmp/dump/backup-${count}.tar.gz  /${include}/.
 
                 while ( [ "$?" != "0" ] && [ "${count1}" -lt "5" ] )
                 do
                         count1="`/usr/bin/expr ${count1} + 1`"
-                        /usr/bin/tar -cvpzf /tmp/dump/backup-${count}.tar.gz  /${include}/* 
+                        /bin/sleep 5
+                        /usr/bin/tar -cvpzfr /tmp/dump/backup-${count}.tar.gz  /${include}/.
                 done
 
                 if ( [ "${count1}" = "5" ] )
                 then
                         ${HOME}/providerscripts/email/SendEmail.sh "FAILED TO COMPLETE FULL MACHINE BACKUP" "There was some sort of issue making a full machine backup" "ERROR"
+                else
+                        ${HOME}/providerscripts/datastore/PutToDatastore.sh /tmp/dump/backup-${count}.tar.gz  ${backup_bucket}
                 fi
-
-                ${HOME}/providerscripts/datastore/PutToDatastore.sh /tmp/dump/backup-${count}.tar.gz  ${backup_bucket}
                 count="`/usr/bin/expr ${count} + 1`"
         fi
 done
