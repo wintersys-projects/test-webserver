@@ -81,13 +81,13 @@ for include in ${includes}
 do
         if ( [ -d /${include} ] )
         then
-                /usr/bin/tar -cpv -f /tmp/dump/backup-${count}.tar  --exclude="${SERVER_USER}" /home /${include}/.
+                /usr/bin/tar -cpv -f /tmp/dump/backup-${count}.tar  --exclude="*${SERVER_USER}*" /home /${include}/.
 
                 while ( [ "$?" != "0" ] && [ "${count1}" -lt "5" ] )
                 do
                         count1="`/usr/bin/expr ${count1} + 1`"
                         /bin/sleep 5
-                        /usr/bin/tar -cpv -f /tmp/dump/backup-${count}.tar  --exclude="${SERVER_USER}" /home /${include}/.
+                        /usr/bin/tar -cpv -f /tmp/dump/backup-${count}.tar  --exclude="*${SERVER_USER}*" /home /${include}/.
 
                 done
 
