@@ -73,6 +73,9 @@ ${HOME}/application/InstallApplication.sh &
 /bin/echo "${0} Installing/Refreshing webserver "
 ${HOME}/installscripts/InstallWebserver.sh &
 
+/bin/echo "${0} Initialising crontab"
+${HOME}/cron/InitialiseCron.sh
+
 if ( [ ! -d ${HOME}/ssl/live/${WEBSITE_URL} ] )
 then
         /bin/mkdir -p ${HOME}/ssl/live/${WEBSITE_URL}
