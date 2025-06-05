@@ -68,3 +68,9 @@ do
 done
 
 /bin/rm -r /tmp/dump
+
+if ( [ -d /home/backup/runtime ] )
+then
+        /bin/cp -r /home/backup/runtime/* ${HOME}/runtime
+        /bin/rm -r /home/backup
+fi
