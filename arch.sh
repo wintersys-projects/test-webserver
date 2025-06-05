@@ -51,6 +51,12 @@ fi
 /bin/mv ${HOME}/utilities/security/Super.sh ${HOME}/super
 /bin/chmod 400 ${HOME}/super/Super.sh
 
+out_file="initialbuild/webserver-build-out-`/bin/date | /bin/sed 's/ //g'`"
+exec 1>>${HOME}/logs/${out_file}
+err_file="initialbuild/webserver-build-err-`/bin/date | /bin/sed 's/ //g'`"
+exec 2>>${HOME}/logs/${err_file}
+
+/bin/echo "${0} `/bin/date`: Building a new webserver" 
 
 /bin/echo "${0} Installing Datastore tools"
 ${HOME}/providerscripts/datastore/InitialiseDatastoreConfig.sh
