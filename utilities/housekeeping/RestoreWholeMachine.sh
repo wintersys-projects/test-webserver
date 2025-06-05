@@ -67,7 +67,7 @@ done
 
 for archive in ${archive_list}
 do
-        /usr/bin/tar -xvf ${archive} -C / &
+        /usr/bin/tar -xvf ${archive} --keep-newer-files -C / &
 done
 
 /usr/bin/tar -xvf *runtime* -C ${HOME}/runtime
