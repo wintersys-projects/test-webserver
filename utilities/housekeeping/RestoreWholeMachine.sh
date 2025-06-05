@@ -70,7 +70,7 @@ do
         /usr/bin/tar -xvf ${archive} --keep-newer-files -C / &
 done
 
-/usr/bin/tar -xvf *runtime* -C ${HOME}/runtime
+/usr/bin/tar -xvf /tmp/dump/*runtime* -C ${HOME}/runtime
 
 /usr/bin/find ${HOME} -type d -exec chmod 755 {} \;
 /usr/bin/find ${HOME} -type f -exec chmod 750 {} \;
