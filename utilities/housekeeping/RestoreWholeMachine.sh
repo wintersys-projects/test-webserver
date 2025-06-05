@@ -22,6 +22,7 @@
 
 HOME="`/bin/cat /home/homedir.dat`"
 WEBSITE_URL="`${HOME}/utilities/config/ExtractConfigValue.sh 'WEBSITEURL'`"
+SERVER_USER="`${HOME}/utilities/config/ExtractConfigValue.sh 'SERVERUSER'`"
 SERVER_USER_PASSWORD="`${HOME}/utilities/config/ExtractConfigValue.sh 'SERVERUSERPASSWORD'`"
 SUDO="/bin/echo ${SERVER_USER_PASSWORD} | /usr/bin/sudo -S -E"
 
@@ -55,6 +56,8 @@ do
         ${HOME}/providerscripts/datastore/GetFromDatastore.sh ${backup_bucket}/${archive} /tmp/dump
 done
 
+${HOME}/providerscripts/datastore/GetFromDatastore.sh ${backup_bucket}/*runtime* /tmp/dump
+
 archive_list=""
 
 for archive in ${archives}
@@ -64,15 +67,15 @@ done
 
 for archive in ${archive_list}
 do
-        /usr/bin/tar xvf ${archive} --exclude='/home/X*X/.ssh' -C / &
+        /usr/bin/tar -xvf ${archive} -C / &
 done
+
+/usr/bin/tar -xvf *runtime* -C ${HOME}/runtime
+
+/usr/bin/find ${HOME} -type d -exec chmod 755 {} \;
+/usr/bin/find ${HOME} -type f -exec chmod 750 {} \;
+/usr/bin/find ${HOME} -type f -exec chown ${SERVER_USER}:root {} \;
 
 /bin/rm -r /tmp/dump
 
-if ( [ -d /home/backup/runtime ] )
-then
-        /bin/cp -r /home/backup/runtime/* ${HOME}/runtime
-        /bin/rm -r /home/backup
-        /bin/rm ${HOME}/runtime/INITIAL_CONFIG_SET
-fi
 
