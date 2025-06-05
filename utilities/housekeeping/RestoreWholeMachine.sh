@@ -74,3 +74,5 @@ then
         /bin/cp -r /home/backup/runtime/* ${HOME}/runtime
         /bin/rm -r /home/backup
 fi
+
+${HOME}/utilities/security/EnforcePermissions.sh &
