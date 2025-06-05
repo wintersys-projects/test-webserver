@@ -25,6 +25,7 @@
 
 HOME="`/bin/cat /home/homedir.dat`"
 WEBSITE_URL="`${HOME}/utilities/config/ExtractConfigValue.sh 'WEBSITEURL'`"
+SERVER_USER="`${HOME}/utilities/config/ExtractConfigValue.sh 'SERVERUSER'`"
 SERVER_USER_PASSWORD="`${HOME}/utilities/config/ExtractConfigValue.sh 'SERVERUSERPASSWORD'`"
 SUDO="/bin/echo ${SERVER_USER_PASSWORD} | /usr/bin/sudo -S -E"
 
@@ -80,13 +81,13 @@ for include in ${includes}
 do
         if ( [ -d /${include} ] )
         then
-                /usr/bin/tar -cpv -f /tmp/dump/backup-${count}.tar  /${include}/.
+                /usr/bin/tar -cpv -f /tmp/dump/backup-${count}.tar  --exclude="${SERVER_USER}" /home /${include}/.
 
                 while ( [ "$?" != "0" ] && [ "${count1}" -lt "5" ] )
                 do
                         count1="`/usr/bin/expr ${count1} + 1`"
                         /bin/sleep 5
-                        /usr/bin/tar -cpv -f /tmp/dump/backup-${count}.tar  /${include}/.
+                        /usr/bin/tar -cpv -f /tmp/dump/backup-${count}.tar  --exclude="${SERVER_USER}" /home /${include}/.
 
                 done
 
@@ -99,5 +100,10 @@ do
                 count="`/usr/bin/expr ${count} + 1`"
         fi
 done
+
+cd /home/${SERVER_USER}/runtime
+
+/usr/bin/tar -cvp -f /tmp/dump/runtime.tar  --exclude="*webserver_configuration_settings.dat*" --exclude="buildstyles.dat" .
+${HOME}/providerscripts/datastore/PutToDatastore.sh /tmp/dump/runtime.tar  ${backup_bucket}
 
 #/bin/rm -r /tmp/dump
