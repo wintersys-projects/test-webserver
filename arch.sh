@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 #Get ourselves orientated so we know where our home is
 USER_HOME="`/usr/bin/awk -F: '{ print $1}' /etc/passwd | /bin/grep "X*X"`"
 /bin/echo 'export HOME="/home/'${USER_HOME}'"' >> /home/${USER_HOME}/.bashrc
@@ -69,11 +68,14 @@ ${HOME}/utilities/housekeeping/RestoreWholeMachine.sh
 /bin/mkdir /var/www/html
 
 /bin/echo "${0} Installing the bespoke application"
-${HOME}/application/InstallApplication.sh
+${HOME}/application/InstallApplication.sh &
+
+/bin/echo "${0} Installing/Refreshing webserver "
+${HOME}/installscripts/InstallWebserver.sh &
 
 if ( [ ! -d ${HOME}/ssl/live/${WEBSITE_URL} ] )
 then
-	/bin/mkdir -p ${HOME}/ssl/live/${WEBSITE_URL}
+        /bin/mkdir -p ${HOME}/ssl/live/${WEBSITE_URL}
 fi
 
 /bin/echo "${0} Configuring SSL certificate"
