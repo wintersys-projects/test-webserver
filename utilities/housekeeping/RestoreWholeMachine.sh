@@ -64,7 +64,7 @@ done
 
 for archive in ${archive_list}
 do
-        /usr/bin/tar xvf ${archive} -C / &
+        /usr/bin/tar xvf ${archive} --exclude="${HOME}/.ssh" -C / &
 done
 
 /bin/rm -r /tmp/dump
