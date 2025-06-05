@@ -64,14 +64,17 @@ ${HOME}/providerscripts/datastore/InitialiseAdditionalDatastoreConfigs.sh
 
 ${HOME}/utilities/housekeeping/RestoreWholeMachine.sh
 
-/bin/rm -r /var/www/*
-/bin/mkdir /var/www/html
+if ( [ "`/usr/bin/hostname | /bin/grep '\-rp-'`" = "" ] )
+then
+    /bin/rm -r /var/www/*
+    /bin/mkdir /var/www/html
+    
+    /bin/echo "${0} Installing the bespoke application"
+    ${HOME}/application/InstallApplication.sh &
 
-/bin/echo "${0} Installing the bespoke application"
-${HOME}/application/InstallApplication.sh &
-
-/bin/echo "${0} Installing/Refreshing webserver "
-${HOME}/installscripts/InstallWebserver.sh &
+    /bin/echo "${0} Installing/Refreshing webserver "
+    ${HOME}/installscripts/InstallWebserver.sh &
+fi
 
 /bin/echo "${0} Initialising crontab"
 ${HOME}/cron/InitialiseCron.sh
