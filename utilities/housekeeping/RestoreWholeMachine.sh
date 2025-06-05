@@ -64,7 +64,7 @@ done
 
 for archive in ${archive_list}
 do
-        ${SUDO} /usr/bin/tar xvfz ${archive} -C /
+        /usr/bin/tar xvfz ${archive} -C /
 done
 
 /bin/rm -r ${HOME}/dump
