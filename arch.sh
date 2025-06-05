@@ -71,10 +71,10 @@ then
     
     /bin/echo "${0} Installing the bespoke application"
     ${HOME}/application/InstallApplication.sh &
-
-    /bin/echo "${0} Installing/Refreshing webserver "
-    ${HOME}/installscripts/InstallWebserver.sh &
 fi
+
+/bin/echo "${0} Installing/Refreshing webserver "
+${HOME}/installscripts/InstallWebserver.sh &
 
 /bin/echo "${0} Initialising crontab"
 ${HOME}/cron/InitialiseCron.sh
