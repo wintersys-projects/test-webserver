@@ -76,4 +76,3 @@ then
         /bin/rm ${HOME}/runtime/INITIAL_CONFIG_SET
 fi
 
-${HOME}/utilities/security/EnforcePermissions.sh &
