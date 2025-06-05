@@ -56,28 +56,38 @@ else
         /bin/rm -r /tmp/dump/*
 fi
 
-exclude="dev proc sys tmp run mnt media lost+found"
+excludes="dev proc sys tmp run mnt media lost+found opt root srv"
 
-include="`/usr/bin/ls /`"
-includes=""
+includes="`/usr/bin/ls /`"
 
-for dir in ${exclude}
+for exclude in ${excludes}
 do
-        includes="`/bin/echo ${includes} | /bin/sed -e "s;${dir};;g" -e 's/  / /g'`"
+        includes="`/bin/echo ${includes} | /bin/sed -e "s;${exclude};;g" -e 's/  / /g'`"
 done
 
 count="1"
+count1="1"
 
 for include in ${includes}
 do
-        /usr/bin/tar -cvpzf /tmp/dump/backup-${count}.tar.gz --include="${include}/*" /
+        if ( [ -d /${include} ] )
+        then
+                /usr/bin/tar -cvpzf /tmp/dump/backup-${count}.tar.gz  /${include}/* 
+
+                while ( [ "$?" != "0" ] && [ "${count1}" -lt "5" ] )
+                do
+                        count1="`/usr/bin/expr ${count1} + 1`"
+                        /usr/bin/tar -cvpzf /tmp/dump/backup-${count}.tar.gz  /${include}/* 
+                done
+
+                if ( [ "${count1}" = "5" ] )
+                then
+                        ${HOME}/providerscripts/email/SendEmail.sh "FAILED TO COMPLETE FULL MACHINE BACKUP" "There was some sort of issue making a full machine backup" "ERROR"
+                fi
+
+                ${HOME}/providerscripts/datastore/PutToDatastore.sh /tmp/dump/backup-${count}.tar.gz  ${backup_bucket}
+                count="`/usr/bin/expr ${count} + 1`"
+        fi
 done
 
-archives="`/bin/ls /tmp/dump/*backup*`"
-
-for archive in ${archives}
-do
-        ${HOME}/providerscripts/datastore/PutToDatastore.sh ${archive} ${backup_bucket}
-done
-
-/bin/rm -r /tmp/dump
+#/bin/rm -r /tmp/dump
