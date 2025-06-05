@@ -42,16 +42,6 @@ then
         machine_type="authenticator"
 fi
 
-#if ( [ ! -d /home/backup ] )
-#then
-#        /bin/mkdir /home/backup
-#fi
-
-#/bin/cp -r ${HOME}/* /home/backup
-
-#/bin/rm /home/backup/runtime/webserver_configuration_settings.dat
-#/bin/rm /home/backup/runtime/buildstyles.dat
-
 backup_bucket="`/bin/echo "${WEBSITE_URL}"-whole-machine-backup | /bin/sed 's/\./-/g'`-${machine_type}"
 
 ${HOME}/providerscripts/datastore/MountDatastore.sh ${backup_bucket}
