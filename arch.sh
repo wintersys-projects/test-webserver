@@ -71,10 +71,10 @@ then
     
     /bin/echo "${0} Installing the bespoke application"
     ${HOME}/application/InstallApplication.sh &
-    ${HOME}/installscripts/InstallReverseProxy.sh
-else
     /bin/echo "${0} Installing/Refreshing webserver "
     ${HOME}/installscripts/InstallWebserver.sh &
+else
+    ${HOME}/installscripts/InstallReverseProxy.sh
 fi
 
 /bin/echo "${0} Initialising crontab"
