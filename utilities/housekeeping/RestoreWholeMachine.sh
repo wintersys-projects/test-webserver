@@ -64,7 +64,7 @@ done
 
 for archive in ${archive_list}
 do
-        /usr/bin/tar xvfz ${archive} -C /
+        /usr/bin/tar xvf ${archive} -C / &
 done
 
-/bin/rm -r ${HOME}/dump
+/bin/rm -r /tmp/dump
