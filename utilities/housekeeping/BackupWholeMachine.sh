@@ -69,22 +69,23 @@ count1="1"
 
 for include in ${includes}
 do
-        if ( [ -d /${include} ] && [ "`/usr/bin/find /${include} -type d -empty`" = "" ] )
+        if ( [ -d /${include} ] )
         then
-                /usr/bin/tar -cvpzfr /tmp/dump/backup-${count}.tar.gz  /${include}/.
+                /usr/bin/tar -cpvf /tmp/dump/backup-${count}.tar  /${include}/.
 
                 while ( [ "$?" != "0" ] && [ "${count1}" -lt "5" ] )
                 do
                         count1="`/usr/bin/expr ${count1} + 1`"
                         /bin/sleep 5
-                        /usr/bin/tar -cvpzfr /tmp/dump/backup-${count}.tar.gz  /${include}/.
+                        /usr/bin/tar -cpvf /tmp/dump/backup-${count}.tar  /${include}/.
+
                 done
 
                 if ( [ "${count1}" = "5" ] )
                 then
                         ${HOME}/providerscripts/email/SendEmail.sh "FAILED TO COMPLETE FULL MACHINE BACKUP" "There was some sort of issue making a full machine backup" "ERROR"
                 else
-                        ${HOME}/providerscripts/datastore/PutToDatastore.sh /tmp/dump/backup-${count}.tar.gz  ${backup_bucket}
+                        ${HOME}/providerscripts/datastore/PutToDatastore.sh /tmp/dump/backup-${count}.tar  ${backup_bucket}
                 fi
                 count="`/usr/bin/expr ${count} + 1`"
         fi
