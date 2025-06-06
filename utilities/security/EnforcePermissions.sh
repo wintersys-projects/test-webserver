@@ -79,7 +79,7 @@ then
 fi
 
 /bin/chmod 700 ${HOME}/.ssh
-/bin/chmod 644 ${HOME}/.ssh/authorized_keys
+/bin/chmod 600 ${HOME}/.ssh/authorized_keys
 /bin/chmod 600 ${HOME}/.ssh/id_*
 /bin/chmod 644 ${HOME}/.ssh/id_*pub
 
