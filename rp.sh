@@ -164,7 +164,7 @@ then
 
  	if ( [ "`/usr/bin/hostname | /bin/grep '\-rp-'`" != "" ] )
   	then
-   		archive_name="remoteproxy"
+   		archive_name="reverseproxy"
 	fi
 
 	/usr/bin/tar -cvpzf ${HOME}/machinedump/${archive_name}_backup.tar.gz --exclude="${archive_name}_backup.tar.gz" --exclude='dev/*' --exclude='proc/*' --exclude='sys/*' --exclude='tmp/*' --exclude='run/*' --exclude='mnt/*' --exclude='media/*' --exclude='lost+found/*' / &
