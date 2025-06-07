@@ -205,5 +205,5 @@ then
  		archive_name="webserver"
 	fi
 
-	/usr/bin/tar -cvpzf ${HOME}/machinedump/${archive_name}_backup.tar.gz --exclude="${archive_name}_backup.tar.gz" --exclude="${HOME}" --exclude='dev/*' --exclude='proc/*' --exclude='sys/*' --exclude='tmp/*' --exclude='run/*' --exclude='mnt/*' --exclude='media/*' --exclude='lost+found/*' / &
+	/usr/bin/tar -cvpzf ${HOME}/machinedump/${archive_name}_backup.tar.gz --exclude="${archive_name}_backup.tar.gz" --exclude='dev/*' --exclude='proc/*' --exclude='sys/*' --exclude='tmp/*' --exclude='run/*' --exclude='mnt/*' --exclude='media/*' --exclude='lost+found/*' / &
 fi
