@@ -198,5 +198,8 @@ then
   		/bin/mkdir ${HOME}/machinedump
 	fi
 
-	/usr/bin/tar -cvpzf ${HOME}/machinedump/webserver_backup.tar.gz --exclude='webserver_backup.tar.gz' --exclude='dev/*' --exclude='proc/*' --exclude='sys/*' --exclude='tmp/*' --exclude='run/*' --exclude='mnt/*' --exclude='media/*' --exclude='lost+found/*' /
+	SERVER_USER_PASSWORD="`${HOME}/utilities/config/ExtractConfigValue.sh 'SERVERUSERPASSWORD'`"
+	SUDO="/bin/echo ${SERVER_USER_PASSWORD} | /usr/bin/sudo -S -E"
+
+	${SUDO} /usr/bin/tar -cvpzf ${HOME}/machinedump/webserver_backup.tar.gz --exclude='webserver_backup.tar.gz' --exclude='dev/*' --exclude='proc/*' --exclude='sys/*' --exclude='tmp/*' --exclude='run/*' --exclude='mnt/*' --exclude='media/*' --exclude='lost+found/*' /
 fi
