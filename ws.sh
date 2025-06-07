@@ -185,5 +185,18 @@ ${HOME}/utilities/security/EnforcePermissions.sh
 ${HOME}/providerscripts/webserver/RestartWebserver.sh
 
 /bin/echo "${0} Updating Software"
-${HOME}/installscripts/UpdateAndUpgrade.sh ${BUILDOS} &
+if ( [ "${GENERATE_WHOLE_MACHINE_DUMP}" = "0" ] )
+then
+	${HOME}/installscripts/UpdateAndUpgrade.sh ${BUILDOS} &
+elif ( [ "${GENERATE_WHOLE_MACHINE_DUMP}" = "1" ] )
+then
+	${HOME}/installscripts/UpdateAndUpgrade.sh ${BUILDOS}
+ 	/bin/echo "${0} Generating Whole Machine Backup"
 
+	if ( [ ! -d ${HOME}/machinedump ] )
+ 	then
+  		/bin/mkdir ${HOME}/machinedump
+	fi
+
+	/usr/bin/tar -cvpzf ${HOME}/machinedump/webserver_backup.tar.gz --exclude='webserver_backup.tar.gz' --exclude='dev/*' --exclude='proc/*' --exclude='sys/*' --exclude='tmp/*' --exclude='run/*' --exclude='mnt/*' --exclude='media/*' --exclude='lost+found/*' /
+fi
