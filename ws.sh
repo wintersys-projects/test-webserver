@@ -200,7 +200,7 @@ then
   		/bin/mkdir ${HOME}/machinedump
 	fi
 
-      	if ( [ "`/usr/bin/hostname | /bin/grep '^wp-'`" != "" ] )
+      	if ( [ "`/usr/bin/hostname | /bin/grep '^ws-'`" != "" ] )
 	then
  		archive_name="webserver"
 	fi
