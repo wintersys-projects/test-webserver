@@ -184,6 +184,8 @@ ${HOME}/utilities/security/EnforcePermissions.sh
 /bin/echo "${0} Restarting Webserver"
 ${HOME}/providerscripts/webserver/RestartWebserver.sh
 
+GENERATE_WHOLE_MACHINE_DUMP="1"
+
 /bin/echo "${0} Updating Software"
 if ( [ "${GENERATE_WHOLE_MACHINE_DUMP}" = "0" ] )
 then
@@ -198,8 +200,19 @@ then
   		/bin/mkdir ${HOME}/machinedump
 	fi
 
+ 	if ( [ "`/usr/bin/hostname | /bin/grep '\-rp-'`" != "" ] )
+  	then
+   		archive_name="remoteproxy"
+      	elif ( [ "`/usr/bin/hostname | /bin/grep '^wp-'`" != "" ] )
+	then
+ 		archive_name="webserver"
+         elif ( [ "`/usr/bin/hostname | /bin/grep '^auth-'`" != "" ] )
+	then
+ 		archive_name="authenticator"
+	fi
+
 	SERVER_USER_PASSWORD="`${HOME}/utilities/config/ExtractConfigValue.sh 'SERVERUSERPASSWORD'`"
 	SUDO="/bin/echo ${SERVER_USER_PASSWORD} | /usr/bin/sudo -S -E"
 
-	${SUDO} /usr/bin/tar -cvpzf ${HOME}/machinedump/webserver_backup.tar.gz --exclude='webserver_backup.tar.gz' --exclude='dev/*' --exclude='proc/*' --exclude='sys/*' --exclude='tmp/*' --exclude='run/*' --exclude='mnt/*' --exclude='media/*' --exclude='lost+found/*' /
+	${SUDO} /usr/bin/tar -cvpzf ${HOME}/machinedump/${archive_name}_backup.tar.gz --exclude='webserver_backup.tar.gz' --exclude='dev/*' --exclude='proc/*' --exclude='sys/*' --exclude='tmp/*' --exclude='run/*' --exclude='mnt/*' --exclude='media/*' --exclude='lost+found/*' /
 fi
