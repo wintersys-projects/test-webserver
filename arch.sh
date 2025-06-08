@@ -26,6 +26,8 @@ USER_HOME="`/usr/bin/awk -F: '{ print $1}' /etc/passwd | /bin/grep "X*X"`"
 /bin/chown ${USER_HOME}:root /home/${USER_HOME}/.bashrc
 
 SERVER_USER="`${HOME}/utilities/config/ExtractConfigValue.sh 'SERVERUSER'`"
+APPLICATION_LANGUAGE="`${HOME}/utilities/config/ExtractConfigValue.sh 'APPLICATIONLANGUAGE'`"
+
 
 /bin/echo "set mouse=r" > /root/.vimrc
 
@@ -146,4 +148,9 @@ then
                         ${HOME}/utilities/config/StoreConfigValue.sh "DATABASEINSTALLATIONTYPE" "MySQL"
                 fi
         fi
+fi
+
+if ( [ "${APPLICATION_LANGUAGE}" = "php" ] )
+then
+        /bin/mkdir /run/php
 fi
