@@ -22,7 +22,7 @@ do
   count="`/usr/bin/expr ${count} + 1`"
   cd ${HOME}/runtime  
   /usr/bin/tar -cvpzf ${HOME}/machinedump/${archive_name}_runtime.tar.gz . 
-  /usr/bin/tar -cvpzf ${HOME}/machinedump/${archive_name}_backup.tar.gz --exclude="${archive_name}_backup.tar.gz" --exclude='dev/*' --exclude='proc/*' --exclude='sys/*' --exclude='tmp/*' --exclude='run/*' --exclude='mnt/*' --exclude='media/*' --exclude='lost+found/*' / 
+  /usr/bin/tar -cvpzf ${HOME}/machinedump/${archive_name}_backup.tar.gz --exclude="${archive_name}_backup.tar.gz" --exclude='/var/www/html/*' --exclude='dev/*' --exclude='proc/*' --exclude='sys/*' --exclude='tmp/*' --exclude='run/*' --exclude='mnt/*' --exclude='media/*' --exclude='lost+found/*' / 
 done
 
 if ( [ "${count}" = "5" ] )
