@@ -150,7 +150,7 @@ then
         fi
 fi
 
-if ( [ "${APPLICATION_LANGUAGE}" = "php" ] )
+if ( [ "${APPLICATION_LANGUAGE}" = "PHP" ] )
 then
         /bin/mkdir /run/php
 fi
