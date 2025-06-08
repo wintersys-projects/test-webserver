@@ -158,7 +158,7 @@ fi
 details=""
 for directory in `/bin/ls /home | /bin/grep "X*X"`
 do
-        details="${details} ${directory}:`/usr/bin/stat -c %Y ${directory}`"
+        details="${details} ${directory}:`/usr/bin/stat -c %Y /home/${directory}`"
 done
 youngest_record_age="0"
 for record in ${details}
