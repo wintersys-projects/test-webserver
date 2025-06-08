@@ -6,6 +6,12 @@ fi
 if ( [ "`/usr/bin/hostname | /bin/grep '^ws-'`" != "" ] )
 then
   archive_name="webserver"
+elif ( [ "`/usr/bin/hostname | /bin/grep '^auth-'`" != "" ] )
+then
+  archive_name="authenticator"
+elif ( [ "`/usr/bin/hostname | /bin/grep '\-rp-'`" != "" ] )
+then
+  archive_name="reverseproxy"
 fi
 
 count="1"
