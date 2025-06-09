@@ -147,6 +147,8 @@ then
 	/bin/ln -s /etc/nginx/sites-available/${WEBSITE_NAME} /etc/nginx/sites-enabled/${WEBSITE_NAME}
 fi
 
+/bin/echo "/etc/nginx/sites-available/${WEBSITE_NAME}" > ${HOME}/runtime/WEBSERVER_CONFIG_LOCATION.dat
+
 ${HOME}/providerscripts/dns/TrustRemoteProxy.sh
 /usr/bin/systemctl start nginx.service
 
