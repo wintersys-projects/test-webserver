@@ -152,6 +152,12 @@ then
         fi
 fi
 
+/bin/echo "${0} `/bin/date`: Setting up the SSL certificates and keys" 
+if ( [ ! -d ${HOME}/ssl/live/${WEBSITE_URL} ] )
+then
+	/bin/mkdir -p ${HOME}/ssl/live/${WEBSITE_URL}
+fi
+
 /bin/echo "${0} Configuring SSL certificate"
 ${HOME}/providerscripts/datastore/configwrapper/GetFromConfigDatastore.sh ssl/${WEBSITE_URL}/fullchain.pem ${HOME}/ssl/live/${WEBSITE_URL}/fullchain.pem
 ${HOME}/providerscripts/datastore/configwrapper/GetFromConfigDatastore.sh ssl/${WEBSITE_URL}/privkey.pem ${HOME}/ssl/live/${WEBSITE_URL}/privkey.pem
