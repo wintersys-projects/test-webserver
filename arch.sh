@@ -96,15 +96,6 @@ ROOT_DOMAIN="`/bin/echo ${WEBSITE_URL} | /usr/bin/awk -F'.' '{$1=""}1' | /bin/se
 
 /bin/touch ${HOME}/runtime/BUILD_IN_PROGRESS
 
-#Initialise Git
-#/usr/bin/git config --global user.name "${GIT_USER}"
-#/usr/bin/git config --global user.email ${GIT_EMAIL_ADDRESS}
-#/usr/bin/git config --global init.defaultBranch main
-#/usr/bin/git config --global pull.rebase false 
-
-#/bin/echo "${0} `/bin/date`: Setting up the Firewall" 
-#${HOME}/security/SetupFirewall.sh
-
 cd ${HOME}
 
 /bin/echo "${0} Installing Datastore tools"
@@ -174,8 +165,3 @@ fi
 /bin/echo "${0} Initialising crontab"
 ${HOME}/cron/InitialiseCron.sh
 
-cd /home
-while ( [ `/bin/ls -1 X*X | wc -l` -gt 1 ] )
-do
-	/bin/rm -r `/bin/ls -cr1 X*X | /usr/bin/head -1`
-done
