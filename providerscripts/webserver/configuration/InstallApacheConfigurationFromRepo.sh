@@ -69,6 +69,7 @@ then
 	/bin/chmod 600 /etc/apache2/sites-available/${WEBSITE_NAME}.conf
 	/bin/chown root:root /etc/apache2/sites-available/${WEBSITE_NAME}.conf
 	/usr/sbin/a2ensite ${WEBSITE_NAME}
+   	/bin/echo "/etc/apache2/sites-available/${WEBSITE_NAME}.conf" > ${HOME}/runtime/WEBSERVER_CONFIG_LOCATION.dat
 fi
 
 port="`${HOME}/utilities/config/ExtractBuildStyleValues.sh "PHP" "stripped" | /usr/bin/awk -F'|' '{print $NF}'`"
