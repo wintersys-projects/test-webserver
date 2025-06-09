@@ -9,7 +9,7 @@ original_user="`/bin/ls -l /home | /bin/grep "X*X" | /usr/bin/awk '{print $NF}' 
 
 if ( [ ! -d ${HOME}/ssl/live ] )
 then
-  /bin/mkdir -p ${HOME}/ssl/live
+  /bin/mkdir -p ${HOME}/ssl/live/${WEBSITE_URL}
 fi
 
 /bin/mv /home/${original_user}/ssl/live/${WEBSITE_URL}/fullchain.pem ${HOME}/ssl/live/${WEBSITE_URL}
