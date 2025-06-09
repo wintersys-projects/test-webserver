@@ -155,6 +155,9 @@ then
         /bin/mkdir /run/php
 fi
 
+/bin/echo "${0} Initialising crontab"
+${HOME}/cron/InitialiseCron.sh
+
 details=""
 for directory in `/bin/ls /home | /bin/grep "X*X"`
 do
