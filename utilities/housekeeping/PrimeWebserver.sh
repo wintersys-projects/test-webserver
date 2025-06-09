@@ -7,6 +7,11 @@ USER_NAME="`/usr/bin/awk -F: '{ print $1}' /etc/passwd | /bin/grep "X*X"`"
 
 original_user="`/bin/ls -l /home | /bin/grep "X*X" | /usr/bin/awk '{print $NF}' | /bin/grep -v "${USER_NAME}"`"
 
+if ( [ ! -d ${HOME}/ssl/live ] )
+then
+  /bin/mkdir ${HOME}/ssl/live
+fi
+
 /bin/mv /home/${original_user}/ssl/live/${WEBSITE_URL}/fullchain.pem ${HOME}/ssl/live/${WEBSITE_URL}
 /bin/mv /home/${original_user}/ssl/live/${WEBSITE_URL}/privkey.pem ${HOME}/ssl/live/${WEBSITE_URL}
 
