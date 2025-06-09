@@ -78,6 +78,7 @@ then
 	/bin/chmod 600 /etc/lighttpd/lighttpd.conf
 	/bin/chown root:root /etc/lighttpd/modules.conf
 	/bin/chmod 600 /etc/lighttpd/modules.conf
+ 	/bin/echo "/etc/lighttpd/lighttpd.conf" > ${HOME}/runtime/WEBSERVER_CONFIG_LOCATION.dat
 fi
 
 /bin/cp ${HOME}/providerscripts/webserver/configuration/authenticator/lighttpd/modules.conf /etc/lighttpd/modules.conf
