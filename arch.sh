@@ -84,25 +84,24 @@ exec 1>>${HOME}/logs/${out_file}
 err_file="initialbuild/webserver-build-err-`/bin/date | /bin/sed 's/ //g'`"
 exec 2>>${HOME}/logs/${err_file}
 
-/bin/echo "${0} `/bin/date`: Building a new webserver" 
+#/bin/echo "${0} `/bin/date`: Building a new webserver" 
 
-WEBSITE_URL="`${HOME}/utilities/config/ExtractConfigValue.sh 'WEBSITEURL'`"
-GIT_EMAIL_ADDRESS="`${HOME}/utilities/config/ExtractConfigValue.sh 'GITEMAILADDRESS'`"
-BUILDOS="`${HOME}/utilities/config/ExtractConfigValue.sh 'BUILDOS'`"
-MACHINE_TYPE="`${HOME}/utilities/config/ExtractConfigValue.sh 'MACHINETYPE'`"
-/bin/touch ${HOME}/${MACHINE_TYPE}
-GIT_USER="`${HOME}/utilities/config/ExtractConfigValue.sh 'GITUSER' | /bin/sed 's/#/ /g'`"
-ROOT_DOMAIN="`/bin/echo ${WEBSITE_URL} | /usr/bin/awk -F'.' '{$1=""}1' | /bin/sed 's/^ //g' | /bin/sed 's/ /./g'`"
+#WEBSITE_URL="`${HOME}/utilities/config/ExtractConfigValue.sh 'WEBSITEURL'`"
+#GIT_EMAIL_ADDRESS="`${HOME}/utilities/config/ExtractConfigValue.sh 'GITEMAILADDRESS'`"
+#BUILDOS="`${HOME}/utilities/config/ExtractConfigValue.sh 'BUILDOS'`"
+#MACHINE_TYPE="`${HOME}/utilities/config/ExtractConfigValue.sh 'MACHINETYPE'`"
+#/bin/touch ${HOME}/${MACHINE_TYPE}
+#GIT_USER="`${HOME}/utilities/config/ExtractConfigValue.sh 'GITUSER' | /bin/sed 's/#/ /g'`"
+#ROOT_DOMAIN="`/bin/echo ${WEBSITE_URL} | /usr/bin/awk -F'.' '{$1=""}1' | /bin/sed 's/^ //g' | /bin/sed 's/ /./g'`"
 
-/bin/touch ${HOME}/runtime/BUILD_IN_PROGRESS
+#/bin/touch ${HOME}/runtime/BUILD_IN_PROGRESS
 
 cd ${HOME}
 
 /bin/echo "${0} Installing Datastore tools"
-${HOME}/installscripts/InstallDatastoreTools.sh
+#${HOME}/installscripts/InstallDatastoreTools.sh
 ${HOME}/providerscripts/datastore/InitialiseDatastoreConfig.sh
 ${HOME}/providerscripts/datastore/InitialiseAdditionalDatastoreConfigs.sh
-
 
 cd ${HOME}
 
@@ -115,19 +114,19 @@ fi
 ${HOME}/application/InstallApplication.sh
 
 
-/bin/echo "${0} `/bin/date`: Setting up the SSL certificates and keys" 
-if ( [ ! -d ${HOME}/ssl/live/${WEBSITE_URL} ] )
-then
-	/bin/mkdir -p ${HOME}/ssl/live/${WEBSITE_URL}
-fi
+#/bin/echo "${0} `/bin/date`: Setting up the SSL certificates and keys" 
+#if ( [ ! -d ${HOME}/ssl/live/${WEBSITE_URL} ] )
+#then#
+#	/bin/mkdir -p ${HOME}/ssl/live/${WEBSITE_URL}
+#fi
 
-/bin/echo "${0} Configuring SSL certificate"
-${HOME}/providerscripts/datastore/configwrapper/GetFromConfigDatastore.sh ssl/${WEBSITE_URL}/fullchain.pem ${HOME}/ssl/live/${WEBSITE_URL}/fullchain.pem
-${HOME}/providerscripts/datastore/configwrapper/GetFromConfigDatastore.sh ssl/${WEBSITE_URL}/privkey.pem ${HOME}/ssl/live/${WEBSITE_URL}/privkey.pem
-/bin/cat ${HOME}/ssl/live/${WEBSITE_URL}/fullchain.pem >> ${HOME}/ssl/live/${WEBSITE_URL}/privkey.pem
-/bin/chown www-data:www-data ${HOME}/ssl/live/${WEBSITE_URL}/fullchain.pem ${HOME}/ssl/live/${WEBSITE_URL}/privkey.pem
-/bin/chmod 400 ${HOME}/ssl/live/${WEBSITE_URL}/fullchain.pem ${HOME}/ssl/live/${WEBSITE_URL}/privkey.pem
-/bin/chown root:root ${HOME}/ssl/live/${WEBSITE_URL}/fullchain.pem ${HOME}/ssl/live/${WEBSITE_URL}/privkey.pem
+#/bin/echo "${0} Configuring SSL certificate"
+#${HOME}/providerscripts/datastore/configwrapper/GetFromConfigDatastore.sh ssl/${WEBSITE_URL}/fullchain.pem ${HOME}/ssl/live/${WEBSITE_URL}/fullchain.pem
+#${HOME}/providerscripts/datastore/configwrapper/GetFromConfigDatastore.sh ssl/${WEBSITE_URL}/privkey.pem ${HOME}/ssl/live/${WEBSITE_URL}/privkey.pem
+#/bin/cat ${HOME}/ssl/live/${WEBSITE_URL}/fullchain.pem >> ${HOME}/ssl/live/${WEBSITE_URL}/privkey.pem
+#/bin/chown www-data:www-data ${HOME}/ssl/live/${WEBSITE_URL}/fullchain.pem ${HOME}/ssl/live/${WEBSITE_URL}/privkey.pem
+#/bin/chmod 400 ${HOME}/ssl/live/${WEBSITE_URL}/fullchain.pem ${HOME}/ssl/live/${WEBSITE_URL}/privkey.pem
+#/bin/chown root:root ${HOME}/ssl/live/${WEBSITE_URL}/fullchain.pem ${HOME}/ssl/live/${WEBSITE_URL}/privkey.pem
 
 if ( [ "${APPLICATION_LANGUAGE}" = "PHP" ] )
 then
