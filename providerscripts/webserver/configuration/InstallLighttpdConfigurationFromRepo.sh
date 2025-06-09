@@ -90,6 +90,7 @@ then
 	/bin/chmod 600 /etc/lighttpd/lighttpd.conf
 	/bin/chown root:root /etc/lighttpd/modules.conf
 	/bin/chmod 600 /etc/lighttpd/modules.conf
+  	/bin/echo "/etc/lighttpd/lighttpd.conf" > ${HOME}/runtime/WEBSERVER_CONFIG_LOCATION.dat
 fi
 
 lighttpd_modules="`${HOME}/utilities/config/ExtractBuildStyleValues.sh "LIGHTTPD:modules-list" "stripped" | /bin/sed 's/|.*//g' | /bin/sed 's/:/ /g' | /bin/sed 's/modules-list//'`"
