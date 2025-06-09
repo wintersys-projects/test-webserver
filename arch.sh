@@ -113,35 +113,6 @@ fi
 /bin/echo "${0} Installing the bespoke application"
 ${HOME}/application/InstallApplication.sh
 
-/bin/echo "${0} Setting up application assets datastore"
-if ( [ "`${HOME}/utilities/config/CheckConfigValue.sh BUILDARCHIVECHOICE:virgin`" != "1" ] && [ "`${HOME}/utilities/config/CheckConfigValue.sh BUILDARCHIVECHOICE:baseline`" != "1" ] )
-then
-        ${HOME}/providerscripts/datastore/assets/SetupAssetsStore.sh
-fi
-
-/bin/echo "${0} Storing database engine type"
-webroot_database_engine="`/bin/cat /var/www/html/dbe.dat`"
-
-if ( [ "${webroot_database_engine}" != "" ] )
-then
-        DATABASE_INSTALLATION_TYPE="`${HOME}/utilities/config/ExtractConfigValue.sh 'DATABASEINSTALLATIONTYPE'`"
-
-        if ( [ "${webroot_database_engine}" = "Postgres" ] )
-        then
-                if ( [ "${DATABASE_INSTALLATION_TYPE}" != "Postgres" ] )
-                then
-                        ${HOME}/utilities/config/StoreConfigValue.sh "DATABASEINSTALLATIONTYPE" "Postgres"
-                fi
-        fi
-
-        if ( [ "${webroot_database_engine}" = "MySQL" ] )
-        then
-                if ( [ "${DATABASE_INSTALLATION_TYPE}" != "MySQL" ] )
-                then
-                        ${HOME}/utilities/config/StoreConfigValue.sh "DATABASEINSTALLATIONTYPE" "MySQL"
-                fi
-        fi
-fi
 
 /bin/echo "${0} `/bin/date`: Setting up the SSL certificates and keys" 
 if ( [ ! -d ${HOME}/ssl/live/${WEBSITE_URL} ] )
