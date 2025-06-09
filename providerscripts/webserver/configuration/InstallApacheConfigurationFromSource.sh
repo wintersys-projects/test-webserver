@@ -65,6 +65,7 @@ then
 	/bin/chmod 600 /etc/apache2/sites-available/${WEBSITE_NAME}
 	/bin/chown root:root /etc/apache2/sites-available/${WEBSITE_NAME}
 	/bin/ln -s /etc/apache2/sites-available/${WEBSITE_NAME} /etc/apache2/sites-enabled/${WEBSITE_NAME}
+  	/bin/echo "/etc/apache2/sites-available/${WEBSITE_NAME}" > ${HOME}/runtime/WEBSERVER_CONFIG_LOCATION.dat
 fi
 
 if ( [ -f /etc/apache2/httpd.conf ] )
