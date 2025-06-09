@@ -99,6 +99,7 @@ ROOT_DOMAIN="`/bin/echo ${WEBSITE_URL} | /usr/bin/awk -F'.' '{$1=""}1' | /bin/se
 cd ${HOME}
 
 /bin/echo "${0} Installing Datastore tools"
+${HOME}/installscripts/InstallDatastoreTools.sh
 ${HOME}/providerscripts/datastore/InitialiseDatastoreConfig.sh
 ${HOME}/providerscripts/datastore/InitialiseAdditionalDatastoreConfigs.sh
 
