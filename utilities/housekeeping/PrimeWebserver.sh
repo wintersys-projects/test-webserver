@@ -23,6 +23,6 @@ fi
 
 webserver_config="`/bin/cat ${HOME}/runtime/WEBSERVER_CONFIG_LOCATION.dat`"
 
-/bin/sed -i "s/${orginal_user}/${USER_NAME}/g" ${webserver_config}
+/bin/sed -i "s/${original_user}/${USER_NAME}/g" ${webserver_config}
 
 /bin/rm -r /home/${original_user}
