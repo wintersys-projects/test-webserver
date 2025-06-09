@@ -85,6 +85,8 @@ fi
 
 /bin/ln -s /etc/nginx/sites-available/${WEBSITE_NAME} /etc/nginx/sites-enabled/${WEBSITE_NAME}
 
+/bin/echo "/etc/nginx/sites-available/${WEBSITE_NAME}" > ${HOME}/runtime/WEBSERVER_CONFIG_LOCATION.dat
+
 /bin/rm -r /var/www/html/*
 /bin/cp ${HOME}/providerscripts/webserver/configuration/authenticator/index.php /var/www/html/index.php
 /bin/chown www-data:www-data /var/www/html/index.php
