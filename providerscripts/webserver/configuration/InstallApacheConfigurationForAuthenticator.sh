@@ -65,6 +65,8 @@ fi
 /bin/chown www-data:www-data /etc/apache2/sites-available/${WEBSITE_NAME}.conf
 /bin/chmod 644 /etc/apache2/sites-available/${WEBSITE_NAME}.conf
 
+/bin/echo "/etc/apache2/sites-available/${WEBSITE_NAME}.conf" > ${HOME}/runtime/WEBSERVER_CONFIG_LOCATION.dat
+
 /bin/sed -i "s/XXXXWEBSITEURLXXXX/${WEBSITE_URL}/g" /etc/apache2/sites-available/${WEBSITE_NAME}.conf
 /bin/sed -i "s,XXXXHOMEXXXX,${HOME},g" /etc/apache2/sites-available/${WEBSITE_NAME}.conf
 
