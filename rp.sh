@@ -145,28 +145,7 @@ do
         /bin/sleep 5
         /usr/bin/curl --insecure https://localhost:443
 done
-    
-GENERATE_WHOLE_MACHINE_DUMP="1"
+
 
 /bin/echo "${0} Updating Software"
-if ( [ "${GENERATE_WHOLE_MACHINE_DUMP}" = "0" ] )
-then
-	${HOME}/installscripts/UpdateAndUpgrade.sh ${BUILDOS} &
-elif ( [ "${GENERATE_WHOLE_MACHINE_DUMP}" = "1" ] )
-then
-	${HOME}/installscripts/UpdateAndUpgrade.sh ${BUILDOS}
- 
- 	/bin/echo "${0} Generating Whole Machine Backup"
-
-	if ( [ ! -d ${HOME}/machinedump ] )
- 	then
-  		/bin/mkdir ${HOME}/machinedump
-	fi
-
- 	if ( [ "`/usr/bin/hostname | /bin/grep '\-rp-'`" != "" ] )
-  	then
-   		archive_name="reverseproxy"
-	fi
-
-	/usr/bin/tar -cvpzf ${HOME}/machinedump/${archive_name}_backup.tar.gz --exclude="${archive_name}_backup.tar.gz" --exclude='dev/*' --exclude='proc/*' --exclude='sys/*' --exclude='tmp/*' --exclude='run/*' --exclude='mnt/*' --exclude='media/*' --exclude='lost+found/*' / &
-fi
+${HOME}/installscripts/UpdateAndUpgrade.sh ${BUILDOS} &
