@@ -26,8 +26,9 @@ message="$2"
 level="$3"
 to_address="$4"
 content_type="$5"
+authentication="${6}"
 
-if ( [ "${level}" = "ERROR" ] || [ "${level}" = "INFO" ] || [ "${level}" = "MANDATORY" ] )
+if ( ( [ "${level}" = "ERROR" ] || [ "${level}" = "INFO" ] || [ "${level}" = "MANDATORY" ] ) && [ "${authentication}" != "AUTHENTICATION" ] )
 then
 	ip_address="`${HOME}/utilities/processing/GetPublicIP.sh`"
  	message="MESSAGE RELATED TO MACHINE WITH IP ADDRESS: ${ip_address}: ${message}"
