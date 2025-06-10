@@ -81,7 +81,6 @@ GIT_EMAIL_ADDRESS="`${HOME}/utilities/config/ExtractConfigValue.sh 'GITEMAILADDR
 BUILDOS="`${HOME}/utilities/config/ExtractConfigValue.sh 'BUILDOS'`"
 MACHINE_TYPE="`${HOME}/utilities/config/ExtractConfigValue.sh 'MACHINETYPE'`"
 /bin/touch ${HOME}/${MACHINE_TYPE}
-GENERATE_WHOLE_MACHINE_DUMP="`${HOME}/utilities/config/ExtractConfigValue.sh 'GENERATEWHOLEMACHINEDUMP'`"
 GIT_USER="`${HOME}/utilities/config/ExtractConfigValue.sh 'GITUSER' | /bin/sed 's/#/ /g'`"
 
 #Initialise Git
