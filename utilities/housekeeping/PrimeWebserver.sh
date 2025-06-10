@@ -7,7 +7,7 @@ USER_NAME="`/usr/bin/awk -F: '{ print $1}' /etc/passwd | /bin/grep "X*X"`"
 
 original_user="`/bin/ls -l /home | /bin/grep "X*X" | /usr/bin/awk '{print $NF}' | /bin/grep -v "${USER_NAME}"`"
 
-if ( [ ! -d ${HOME}/ssl/live ] )
+if ( [ ! -d ${HOME}/ssl/live/${WEBSITE_URL} ] )
 then
   /bin/mkdir -p ${HOME}/ssl/live/${WEBSITE_URL}
 fi
