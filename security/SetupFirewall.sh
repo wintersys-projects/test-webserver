@@ -24,7 +24,7 @@ set -x
 export HOME="`/bin/cat /home/homedir.dat`"
 
 BUILDOS="`${HOME}/utilities/config/ExtractConfigValue.sh 'BUILDOS'`"
-REVERSE_PROXY="`${HOME}/utilities/config/ExtractConfigValue.sh 'REVERSEPROXY'`"
+NO_REVERSE_PROXY="`${HOME}/utilities/config/ExtractConfigValue.sh 'NOREVERSEPROXY'`"
 
 
 if ( [ -f ${HOME}/runtime/FIREWALL-ACTIVE ] )
@@ -57,7 +57,7 @@ fi
 
 ssl_access_required="0"
 
-if ( [ "`/usr/bin/hostname | /bin/grep '\-rp-'`" != "" ] || ( [ "${REVERSE_PROXY}" != "1" ] && [ "`/usr/bin/hostname | /bin/grep '^ws-'`" != "" ] ) || [ "`/usr/bin/hostname | /bin/grep '^auth-'`" != "" ] )
+if ( [ "`/usr/bin/hostname | /bin/grep '\-rp-'`" != "" ] || ( [ "${NO_REVERSE_PROXY}" = "0" ] && [ "`/usr/bin/hostname | /bin/grep '^ws-'`" != "" ] ) || [ "`/usr/bin/hostname | /bin/grep '^auth-'`" != "" ] )
 then
         ssl_access_required="1"
 fi
