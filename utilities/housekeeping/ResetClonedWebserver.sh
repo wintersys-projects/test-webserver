@@ -26,3 +26,8 @@ webserver_config="`/bin/cat ${HOME}/runtime/WEBSERVER_CONFIG_LOCATION.dat`"
 /bin/sed -i "s/${original_user}/${USER_NAME}/g" ${webserver_config}
 
 /bin/rm -r /home/${original_user}
+
+if ( [ -f ${HOME}/runtime/authenticator/ipaddresses.dat ] )
+then
+  /bin/rm ${HOME}/runtime/authenticator/ipaddresses.dat
+fi
