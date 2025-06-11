@@ -62,6 +62,14 @@ then
         ssl_access_required="1"
 fi
 
+if ( [ ! -f ${HOME}/runtime/FIREWALL-ACTIVE ] )
+then
+        if ( [ -f ${HOME}/runtime/authenticator/ipaddresses.dat ] )
+        then
+                /bin/rm ${HOME}/runtime/authenticator/ipaddresses.dat
+        fi
+fi
+
 if ( [ "${firewall}" = "ufw" ] && [ ! -f ${HOME}/runtime/FIREWALL-ACTIVE ] )
 then
         /usr/bin/yes | /usr/sbin/ufw reset
