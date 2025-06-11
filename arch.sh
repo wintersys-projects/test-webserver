@@ -2,7 +2,7 @@
 ######################################################################################################
 # Author: Peter Winter
 # Date :  9/4/2016
-# Description: This is the script which builds a webserver
+# Description: This is the script which builds a webserver when a whole machine backup is being used
 ######################################################################################################
 # License Agreement:
 # This file is part of The Agile Deployment Toolkit.
