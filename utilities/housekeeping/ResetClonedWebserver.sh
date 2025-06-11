@@ -1,5 +1,6 @@
 HOME="`/bin/cat /home/homedir.dat`"
 WEBSITE_URL="`${HOME}/utilities/config/ExtractConfigValue.sh 'WEBSITEURL'`"
+BUILDOS="`${HOME}/utilities/config/ExtractConfigValue.sh 'BUILDOS'`"
 
 /bin/rm ${HOME}/runtime/FIREWALL-ACTIVE
 
@@ -26,5 +27,7 @@ webserver_config="`/bin/cat ${HOME}/runtime/WEBSERVER_CONFIG_LOCATION.dat`"
 /bin/sed -i "s/${original_user}/${USER_NAME}/g" ${webserver_config}
 
 /bin/rm -r /home/${original_user}
+
+${HOME}/installscripts/UpdateAndUpgrade.sh ${BUILDOS} &
 
 
