@@ -33,7 +33,6 @@ then
         ${HOME}/utilities/config/StoreConfigValue.sh "WEBSITEURL" "${WEBSITE_URL}"
 fi
 
-/bin/rm -r ${HOME}/logs/*
 
 if ( [ -d /var/www/html ] )
 then
