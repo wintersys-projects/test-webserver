@@ -33,6 +33,8 @@ then
   /bin/rm -r /var/www/html/*
 fi
 
+APPLICATION_LANGUAGE="`${HOME}/utilities/config/ExtractConfigValue.sh 'APPLICATIONLANGUAGE'`"
+
 if ( [ "${APPLICATION_LANGUAGE}" = "PHP" ] )
 then
         /bin/mkdir /run/php
