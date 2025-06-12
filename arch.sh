@@ -19,6 +19,13 @@
 #######################################################################################################
 #set -x
 
+HOME="`/bin/cat /home/homedir.dat`"
+
+if ( [ -d ${HOME}/logs ] )
+then
+	/bin/rm ${HOME}/logs/*
+fi
+
 if ( [ "`/usr/bin/hostname | /bin/grep '^auth-'`" != "" ] )
 then
         ${HOME}/utilities/config/StoreConfigValue.sh "WEBSITEURLORIGINAL" "${WEBSITE_URL}"
