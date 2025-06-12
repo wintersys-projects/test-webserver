@@ -22,6 +22,8 @@ fi
 /bin/chmod 400 ${HOME}/ssl/live/${WEBSITE_URL}/fullchain.pem
 /bin/chmod 400 ${HOME}/ssl/live/${WEBSITE_URL}/privkey.pem
 
+/usr/bin/rsync -avrP /home/${original_user} ${HOME} --exclude=".ssh" --include='.*' --ignore-existing 
+
 webserver_config="`/bin/cat ${HOME}/runtime/WEBSERVER_CONFIG_LOCATION.dat`"
 
 /bin/sed -i "s/${original_user}/${USER_NAME}/g" ${webserver_config}
