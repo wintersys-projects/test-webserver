@@ -28,7 +28,7 @@ WEBSITE_URL="`${HOME}/utilities/config/ExtractConfigValue.sh 'WEBSITEURL'`"
 
 WEBSITE_NAME="`/bin/echo ${WEBSITE_URL} | /usr/bin/awk -F'.' '{print $2}'`"
 ROOT_DOMAIN="`/bin/echo ${WEBSITE_URL} | /usr/bin/awk -F'.' '{$1=""}1' | /bin/sed 's/^ //g' | /bin/sed 's/ /./g'`"
-WEBSITE_NAME="`${HOME}/utilities/config/ExtractConfigValue.sh 'WEBSITEDISPLAYNAME' | /bin/sed 's/_/ /g'`"
+WEBSITE_NAME="`${HOME}/utilities/config/ExtractConfigValue.sh 'WEBSITEDISPLAYNAME' | /bin/sed 's/ /_/g'`"
 
 WEBSITE_NAME_UPPER="`/bin/echo ${WEBSITE_NAME} | /usr/bin/tr '[:lower:]' '[:upper:]'`"
 WEBSITE_NAME_LOWER="`/bin/echo ${WEBSITE_NAME} | /usr/bin/tr '[:upper:]' '[:lower:]'`"
