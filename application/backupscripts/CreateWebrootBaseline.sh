@@ -37,8 +37,14 @@ else
         baseline_name="${1}"
 fi
 
+if ( [ "${baseline_name}" = "" ] )
+then
+	/bin/echo "Identifier can't be blank"
+ 	exit
+fi
 
-/bin/echo "Creating baseline of your database"
+
+/bin/echo "Creating baseline of your webroot"
 
 if ( [ ! -d ${HOME}/logs/backups ] )
 then
@@ -54,7 +60,7 @@ fi
 
 if ( [ "${1}" != "" ] )
 then
-	/bin/echo "the following logs available on your database server"
+	/bin/echo "the following logs available on your webserver"
 	#The log files for the server build are written here...
 	log_file="baseline_out_`/bin/date | /bin/sed 's/ //g'`"
 	err_file="baseline_err_`/bin/date | /bin/sed 's/ //g'`"
