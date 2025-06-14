@@ -31,6 +31,8 @@ else
 	BUILDOS="${buildos}"
 fi
 
+MOD_SECURITY="`${HOME}/utilities/config/ExtractConfigValue.sh 'MODSECURITY'`"
+
 apt=""
 if ( [ "`${HOME}/utilities/config/ExtractBuildStyleValues.sh "PACKAGEMANAGER" | /usr/bin/awk -F':' '{print $NF}'`" = "apt" ] )
 then
@@ -64,6 +66,10 @@ then
 					then
 						eval ${install_command} ${software_package_list}
 					fi
+     					if ( [ "${MOD_SECURITY}" = "1" ] )
+	  				then
+       						${HOME}/installscripts/modsecurity/BuildModSecurityFromSource.sh
+	     				fi
 	  
 					${HOME}/installscripts/nginx/BuildNginxFromSource.sh "Ubuntu"  			
 				fi
@@ -102,6 +108,11 @@ then
 					then
 						eval ${install_command} ${software_package_list}
 					fi
+
+          				if ( [ "${MOD_SECURITY}" = "1" ] )
+	  				then
+       						${HOME}/installscripts/modsecurity/BuildModSecurityFromSource.sh
+	     				fi
 	  
 					${HOME}/installscripts/nginx/BuildNginxFromSource.sh "Debian"        		
 				fi
