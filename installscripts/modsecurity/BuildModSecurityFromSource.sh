@@ -28,5 +28,7 @@ cd /opt
 /bin/echo "Include /usr/local/modsecurity-crs/crs-setup.conf" >> /etc/nginx/modsec/main.conf
 /bin/echo "Include /usr/local/modsecurity-crs/rules/*.conf" >> /etc/nginx/modsec/main.conf
 
+/bin/rm  /usr/local/modsecurity-crs/rules/RESPONSE-959-BLOCKING-EVALUATION.conf
+
 
 
