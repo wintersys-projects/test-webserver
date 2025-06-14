@@ -29,6 +29,8 @@
 
 export HOME=`/bin/cat /home/homedir.dat`
 BUILDOS="`${HOME}/utilities/config/ExtractConfigValue.sh 'BUILDOS'`"
+MOD_SECURITY="`${HOME}/utilities/config/ExtractConfigValue.sh 'MODSECURITY'`"
+
 
 cwd=`/usr/bin/pwd`
 
@@ -47,6 +49,13 @@ else
 	/bin/cp /dev/null /etc/nginx/modules.conf
 fi
 
+mod_security_module="" 
+
+if ( [ "${MOD_SECURITY}" = "1" ] )
+then
+	mod_security_module="--add-module=/opt/ModSecurity-nginx"
+fi
+
 #Get the list of any custom modules that we want to compile with, if there are none, perform a default build
 static_nginx_modules="`${HOME}/utilities/config/ExtractBuildStyleValues.sh "NGINX:static-modules-list" "stripped" | /bin/sed -e 's/:/ /g' -e 's/source//g' -e 's/static-modules-list//g' -e 's/^ //'`" 
 
@@ -62,7 +71,7 @@ else
 	options=" --prefix=/var/www/html --sbin-path=/usr/sbin/nginx --conf-path=/etc/nginx/nginx.conf --http-log-path=/var/log/nginx/access.log --error-log-path=/var/log/nginx/error.log --modules-path=/etc/nginx/modules  --pid-path=/etc/nginx/nginx.pid --lock-path=/etc/nginx/nginx.lock --user=www-data --group=www-data --with-threads --with-file-aio --with-http_ssl_module --with-http_v2_module --with-http_realip_module --with-http_addition_module --with-http_sub_module --with-http_mp4_module --with-http_gzip_static_module --with-http_auth_request_module --with-http_secure_link_module --with-http_slice_module --with-http_stub_status_module --http-log-path=/var/log/nginx/access.log --with-stream --with-stream_ssl_module --with-stream_realip_module --with-compat --with-pcre-jit"
 fi
 
-./configure ${options}
+./configure ${options} ${mod_security_module}
 
 /usr/bin/make -j4
 /usr/bin/make install
