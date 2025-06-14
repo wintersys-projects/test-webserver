@@ -68,6 +68,7 @@ then
 					fi
      					if ( [ "${MOD_SECURITY}" = "1" ] )
 	  				then
+       						${install_command} g++ apt-utils autoconf automake build-essential libcurl4-openssl-dev libgeoip-dev liblmdb-dev libpcre2-dev libtool libxml2-dev libyajl-dev pkgconf zlib1g-dev
        						${HOME}/installscripts/modsecurity/BuildModSecurityFromSource.sh
 	     				fi
 	  
@@ -111,6 +112,7 @@ then
 
           				if ( [ "${MOD_SECURITY}" = "1" ] )
 	  				then
+						${install_command} g++ apt-utils autoconf automake build-essential libcurl4-openssl-dev libgeoip-dev liblmdb-dev libpcre2-dev libtool libxml2-dev libyajl-dev pkgconf zlib1g-dev
        						${HOME}/installscripts/modsecurity/BuildModSecurityFromSource.sh
 	     				fi
 	  
