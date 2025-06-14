@@ -3,4 +3,5 @@
 
 /usr/bin/git clone --depth 1 -b v3/master --single-branch https://github.com/SpiderLabs/ModSecurity /usr/local/src/ModSecurity/
 cd /usr/local/src/ModSecurity/
+/usr/bin/git submodule init
 
