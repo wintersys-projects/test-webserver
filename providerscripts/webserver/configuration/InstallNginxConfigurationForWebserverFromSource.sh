@@ -78,7 +78,7 @@ fi
 
 if ( [ "${MOD_SECURITY}" = "1" ] )
 then
-	/bin/sed -i -e "/XXXXMODSECURITYXXXX/{r ${HOME}/providerscripts/webserver/configuration/${APPLICATION}/nginx/online/source/modsecurity.conf" -e "d}" /etc/nginx/sites-available/${WEBSITE_NAME}
+	/bin/sed -i -e "/#XXXXMODSECURITYXXXX/{r ${HOME}/providerscripts/webserver/configuration/${APPLICATION}/nginx/online/source/modsecurity.conf" -e "d}" /etc/nginx/sites-available/${WEBSITE_NAME}
 fi
 
 if ( [ -f /etc/nginx/sites-available/${WEBSITE_NAME} ] )
