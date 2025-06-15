@@ -63,7 +63,7 @@ then
 			/bin/sed -i "s/XXXXPHPVERSIONXXXX/${PHP_VERSION}/" /etc/lighttpd/lighttpd.conf
 		fi
 	else
-		if ( [ -f ${HOME}/providerscripts/webserver/configuration/authenticator/lighttpd/fastcgi_port.conf ] )
+		if ( [ -f ${HOME}/providerscripts/webserver/configuration/authenticator/lighttpd/online/source/fastcgi_port.conf ] )
 		then
 			/bin/sed -i -e "/XXXXFASTCGIXXXX/{r ${HOME}/providerscripts/webserver/configuration/authenticator/lighttpd/online/source/fastcgi_port.conf" -e "d}" /etc/lighttpd/lighttpd.conf
 			/bin/sed -i "s/XXXXPORTXXXX/${port}/" /etc/lighttpd/lighttpd.conf
