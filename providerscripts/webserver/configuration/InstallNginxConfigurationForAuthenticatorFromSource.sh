@@ -3,7 +3,7 @@
 # Author : Peter Winter
 # Date   : 13/07/2016
 # Description : This will install a lighttpd configuration for an authenticator type
-# machine
+# machine from source
 #################################################################################
 # License Agreement:
 # This file is part of The Agile Deployment Toolkit.
