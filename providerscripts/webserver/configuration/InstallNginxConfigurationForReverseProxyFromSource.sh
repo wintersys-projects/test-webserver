@@ -63,7 +63,7 @@ fi
 
 if ( [ "${MOD_SECURITY}" = "1" ] )
 then
-        /bin/sed -i -e "/#XXXXMODSECURITYXXXX/{r ${HOME}/providerscripts/webserver/configuration/${APPLICATION}/nginx/online/source/modsecurity.conf" -e "d}" /etc/nginx/sites-available/${WEBSITE_NAME}
+        /bin/sed -i -e "/#XXXXMODSECURITYXXXX/{r ${HOME}/providerscripts/webserver/configuration/reverseproxy/nginx/online/source/modsecurity.conf" -e "d}" /etc/nginx/sites-available/${WEBSITE_NAME}
 fi
 
 /usr/bin/openssl dhparam -out /etc/ssl/certs/dhparam.pem 2048
