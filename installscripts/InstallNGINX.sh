@@ -32,6 +32,8 @@ else
 fi
 
 MOD_SECURITY="`${HOME}/utilities/config/ExtractConfigValue.sh 'MODSECURITY'`"
+NO_REVERSE_PROXY="`${HOME}/utilities/config/ExtractConfigValue.sh 'NO_REVERSE_PROXY'`"
+
 
 apt=""
 if ( [ "`${HOME}/utilities/config/ExtractBuildStyleValues.sh "PACKAGEMANAGER" | /usr/bin/awk -F':' '{print $NF}'`" = "apt" ] )
@@ -68,9 +70,12 @@ then
 					fi
      					if ( [ "${MOD_SECURITY}" = "1" ] )
 	  				then
-       						${install_command} g++ apt-utils autoconf automake build-essential libcurl4-openssl-dev libgeoip-dev liblmdb-dev libpcre2-dev libtool libxml2-dev libyajl-dev pkgconf zlib1g-dev
-       						${HOME}/installscripts/modsecurity/BuildModSecurityFromSource.sh
-	     				fi
+       						if ( [ "${NO_REVERSE_PROXY}" = "0" ] || ( [ "${NO_REVERSE_PROXY}" != "0" ] && [ "`/usr/bin/hostname | /bin/grep '\-rp-'`" != "" ] ) )
+	     					then
+       							${install_command} g++ apt-utils autoconf automake build-essential libcurl4-openssl-dev libgeoip-dev liblmdb-dev libpcre2-dev libtool libxml2-dev libyajl-dev pkgconf zlib1g-dev
+       							${HOME}/installscripts/modsecurity/BuildModSecurityFromSource.sh
+	     					fi
+	  				fi
 	  
 					${HOME}/installscripts/nginx/BuildNginxFromSource.sh "Ubuntu"  			
 				fi
@@ -112,9 +117,12 @@ then
 
           				if ( [ "${MOD_SECURITY}" = "1" ] )
 	  				then
-						${install_command} g++ apt-utils autoconf automake build-essential libcurl4-openssl-dev libgeoip-dev liblmdb-dev libpcre2-dev libtool libxml2-dev libyajl-dev pkgconf zlib1g-dev
-       						${HOME}/installscripts/modsecurity/BuildModSecurityFromSource.sh
-	     				fi
+       						if ( [ "${NO_REVERSE_PROXY}" = "0" ] || ( [ "${NO_REVERSE_PROXY}" != "0" ] && [ "`/usr/bin/hostname | /bin/grep '\-rp-'`" != "" ] ) )
+	     					then
+							${install_command} g++ apt-utils autoconf automake build-essential libcurl4-openssl-dev libgeoip-dev liblmdb-dev libpcre2-dev libtool libxml2-dev libyajl-dev pkgconf zlib1g-dev
+       							${HOME}/installscripts/modsecurity/BuildModSecurityFromSource.sh
+	     					fi
+	  				fi
 	  
 					${HOME}/installscripts/nginx/BuildNginxFromSource.sh "Debian"        		
 				fi
