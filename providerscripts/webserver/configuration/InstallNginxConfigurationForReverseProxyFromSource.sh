@@ -54,9 +54,9 @@ then
         /bin/mkdir -p /etc/nginx/sites-available
 fi
 
-if ( [ -f ${HOME}/providerscripts/webserver/configuration/reverseproxy/nginx/site-available.conf ] )
+if ( [ -f ${HOME}/providerscripts/webserver/configuration/reverseproxy/nginx/online/source/site-available.conf ] )
 then
-        /bin/cp ${HOME}/providerscripts/webserver/configuration/reverseproxy/nginx/site-available.conf /etc/nginx/sites-available/${WEBSITE_NAME}
+        /bin/cp ${HOME}/providerscripts/webserver/configuration/reverseproxy/nginx/online/source/site-available.conf /etc/nginx/sites-available/${WEBSITE_NAME}
         /bin/sed -i "s/XXXXWEBSITEURLXXXX/${WEBSITE_URL}/g" /etc/nginx/sites-available/${WEBSITE_NAME}
         export HOME="`/bin/cat /home/homedir.dat`"
         /bin/sed -i "s,XXXXHOMEXXXX,${HOME},g" /etc/nginx/sites-available/${WEBSITE_NAME}
@@ -68,15 +68,15 @@ port="`${HOME}/utilities/config/ExtractBuildStyleValues.sh "PHP" "stripped" | /u
 
 if ( [ "`/bin/echo ${port} | /bin/grep -o "^[0-9]*$"`" = "" ] )
 then
-        if ( [ -f ${HOME}/providerscripts/webserver/configuration/reverseproxy/nginx/fastcgi_socket.conf ] )
+        if ( [ -f ${HOME}/providerscripts/webserver/configuration/reverseproxy/nginx/online/source/fastcgi_socket.conf ] )
         then
-                /bin/sed -i -e "/XXXXFASTCGIXXXX/{r ${HOME}/providerscripts/webserver/configuration/reverseproxy/nginx/fastcgi_socket.conf" -e "d}" /etc/nginx/sites-available/${WEBSITE_NAME}
+                /bin/sed -i -e "/XXXXFASTCGIXXXX/{r ${HOME}/providerscripts/webserver/configuration/reverseproxy/nginx/online/source/fastcgi_socket.conf" -e "d}" /etc/nginx/sites-available/${WEBSITE_NAME}
                 /bin/sed -i "s/XXXXPHPVERSIONXXXX/${PHP_VERSION}/" /etc/nginx/sites-available/${WEBSITE_NAME}
         fi
 else
         if ( [ -f ${HOME}/providerscripts/webserver/configuration/reverseproxy/nginx/fastcgi_port.conf ] )
         then
-                /bin/sed -i -e "/XXXXFASTCGIXXXX/{r ${HOME}/providerscripts/webserver/configuration/reverseproxy/nginx/fastcgi_port.conf" -e "d}" /etc/nginx/sites-available/${WEBSITE_NAME}
+                /bin/sed -i -e "/XXXXFASTCGIXXXX/{r ${HOME}/providerscripts/webserver/configuration/reverseproxy/nginx/online/source/fastcgi_port.conf" -e "d}" /etc/nginx/sites-available/${WEBSITE_NAME}
                 /bin/sed -i "s/XXXXPORTXXXX/${port}/" /etc/nginx/sites-available/${WEBSITE_NAME}
         fi
 fi
@@ -87,9 +87,9 @@ then
         /bin/chown root:root /etc/nginx/sites-available/${WEBSITE_NAME}
 fi
 
-if ( [ -f ${HOME}/providerscripts/webserver/configuration/reverseproxy/nginx/nginx.conf ] )
+if ( [ -f ${HOME}/providerscripts/webserver/configuration/reverseproxy/nginx/online/source/nginx.conf ] )
 then
-        /bin/cp ${HOME}/providerscripts/webserver/configuration/reverseproxy/nginx/nginx.conf /etc/nginx/nginx.conf
+        /bin/cp ${HOME}/providerscripts/webserver/configuration/reverseproxy/nginx/online/source/nginx.conf /etc/nginx/nginx.conf
 
         if ( [ "${DNS_CHOICE}" = "cloudflare" ] )
         then
@@ -105,9 +105,9 @@ then
         /bin/chown root:root  /etc/nginx/nginx.conf
 fi
 
-if ( [ -f ${HOME}/providerscripts/webserver/configuration/reverseproxy/nginx/blockuseragents.rules ] )
+if ( [ -f ${HOME}/providerscripts/webserver/configuration/reverseproxy/nginx/online/source/blockuseragents.rules ] )
 then
-        /bin/cp ${HOME}/providerscripts/webserver/configuration/reverseproxy/nginx/blockuseragents.rules /etc/nginx/blockuseragents.rules
+        /bin/cp ${HOME}/providerscripts/webserver/configuration/reverseproxy/nginx/online/source/blockuseragents.rules /etc/nginx/blockuseragents.rules
         /bin/chmod 600  /etc/nginx/blockuseragents.rules
         /bin/chown root:root /etc/nginx/blockuseragents.rules
 fi
