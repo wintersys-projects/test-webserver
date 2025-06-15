@@ -29,6 +29,7 @@ WEBSITE_NAME="`${HOME}/utilities/config/ExtractConfigValue.sh 'WEBSITEDISPLAYNAM
 DNS_CHOICE="`${HOME}/utilities/config/ExtractConfigValue.sh 'DNSCHOICE'`"
 USER_EMAIL_DOMAIN="`${HOME}/utilities/config/ExtractConfigValue.sh 'USEREMAILDOMAIN'`"
 PHP_VERSION="`${HOME}/utilities/config/ExtractConfigValue.sh 'PHPVERSION'`"
+MOD_SECURITY="`${HOME}/utilities/config/ExtractConfigValue.sh 'MODSECURITY'`"
 
 /bin/cp ${HOME}/providerscripts/webserver/configuration/authenticator/nginx/online/source/nginx.conf /etc/nginx
 /bin/chown www-data:www-data /etc/nginx/nginx.conf
@@ -51,6 +52,11 @@ fi
 /bin/cp ${HOME}/providerscripts/webserver/configuration/authenticator/nginx/online/source/site-available.conf /etc/nginx/sites-available/${WEBSITE_NAME}
 /bin/chown www-data:www-data /etc/nginx/sites-available/${WEBSITE_NAME}
 /bin/chmod 644 /etc/nginx/sites-available/${WEBSITE_NAME}
+
+if ( [ "${MOD_SECURITY}" = "1" ] )
+then
+        /bin/sed -i -e "/#XXXXMODSECURITYXXXX/{r ${HOME}/providerscripts/webserver/configuration/authenticator/nginx/online/source/modsecurity.conf" -e "d}" /etc/nginx/sites-available/${WEBSITE_NAME}
+fi
 
 /bin/sed -i "s/XXXXWEBSITEURLXXXX/${WEBSITE_URL}/g" /etc/nginx/sites-available/${WEBSITE_NAME}
 /bin/sed -i "s,XXXXHOMEXXXX,${HOME},g" /etc/nginx/sites-available/${WEBSITE_NAME}
