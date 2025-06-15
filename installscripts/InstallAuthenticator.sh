@@ -54,6 +54,7 @@ then
 	then
         	${HOME}/providerscripts/webserver/configuration/InstallLighttpdConfigurationForAuthenticator.sh
 	fi
+ 	/bin/touch ${HOME}/runtime/installedsoftware/InstallAuthenticator.sh				
 fi
 
 if ( [ "${BUILDOS}" = "debian" ] )
@@ -76,5 +77,6 @@ then
     then
         ${HOME}/providerscripts/webserver/configuration/InstallLighttpdConfigurationForAuthenticator.sh
     fi
+    /bin/touch ${HOME}/runtime/installedsoftware/InstallAuthenticator.sh				
 fi
 
