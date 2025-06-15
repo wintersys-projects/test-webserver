@@ -32,7 +32,7 @@ else
 fi
 
 MOD_SECURITY="`${HOME}/utilities/config/ExtractConfigValue.sh 'MODSECURITY'`"
-NO_REVERSE_PROXY="`${HOME}/utilities/config/ExtractConfigValue.sh 'NO_REVERSE_PROXY'`"
+NO_REVERSE_PROXY="`${HOME}/utilities/config/ExtractConfigValue.sh 'NOREVERSEPROXY'`"
 
 
 apt=""
