@@ -23,6 +23,8 @@ cd /opt
 /bin/cp /etc/nginx/modsec/modsecurity.conf-recommended /etc/nginx/modsec/modsecurity.conf
 
 /bin/sed -i 's/^SecRuleEngine.*/SecRuleEngine On/' /etc/nginx/modsec/modsecurity.conf
+/bin/sed -i 's/^SecResponseBodyAccess.*/SecResponseBodyAccess Off/' /etc/nginx/modsec/modsecurity.conf
+
 
 /bin/echo "Include /etc/nginx/modsec/modsecurity.conf" > /etc/nginx/modsec/main.conf
 /bin/echo "Include /usr/local/modsecurity-crs/crs-setup.conf" >> /etc/nginx/modsec/main.conf
