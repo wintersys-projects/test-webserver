@@ -1,6 +1,6 @@
 #!/bin/sh
 ###########################################################################################################
-# Description: This will install the apache configuration for an authentication machine
+# Description: This will install the apache configuration for an authentication machine from source
 # Author : Peter Winter
 # Date: 17/05/2017
 ######################################################################################################
