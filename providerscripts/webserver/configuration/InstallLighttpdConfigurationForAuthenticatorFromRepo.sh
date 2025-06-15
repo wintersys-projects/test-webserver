@@ -2,7 +2,7 @@
 ###################################################################################
 # Author : Peter Winter
 # Date   : 13/07/2016
-# Description : This script will perform a base installation of Lighttpd from repo. You are
+# Description : This script will perform a base installation of Lighttpd from source. You are
 # welcome to modify it to your needs.
 ###################################################################################
 # License Agreement:
