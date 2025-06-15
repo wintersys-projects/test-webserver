@@ -74,7 +74,7 @@ then
                 /bin/sed -i "s/XXXXPHPVERSIONXXXX/${PHP_VERSION}/" /etc/nginx/sites-available/${WEBSITE_NAME}
         fi
 else
-        if ( [ -f ${HOME}/providerscripts/webserver/configuration/reverseproxy/nginx/fastcgi_port.conf ] )
+        if ( [ -f ${HOME}/providerscripts/webserver/configuration/reverseproxy/nginx/online/source/fastcgi_port.conf ] )
         then
                 /bin/sed -i -e "/XXXXFASTCGIXXXX/{r ${HOME}/providerscripts/webserver/configuration/reverseproxy/nginx/online/source/fastcgi_port.conf" -e "d}" /etc/nginx/sites-available/${WEBSITE_NAME}
                 /bin/sed -i "s/XXXXPORTXXXX/${port}/" /etc/nginx/sites-available/${WEBSITE_NAME}
