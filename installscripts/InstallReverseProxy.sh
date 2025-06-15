@@ -38,11 +38,33 @@ if ( [ "${BUILDOS}" = "ubuntu" ] )
 then
 	if ( [ "`${HOME}/utilities/config/CheckConfigValue.sh WEBSERVERCHOICE:APACHE`" = "1" ] )
 	then
-		${HOME}/providerscripts/webserver/configuration/InstallApacheConfigurationForReverseProxy.sh
-	fi
+ 		if ( [ "`${HOME}/utilities/config/CheckBuildStyle.sh 'APACHE:repo'`" = "1" ] || [ "`${HOME}/utilities/config/CheckBuildStyle.sh 'APACHE:cloud-init'`" = "1" ] )
+		then
+			${HOME}/providerscripts/webserver/configuration/InstallApacheConfigurationForReverseProxyFromRepo.sh		
+		elif ( [ "`${HOME}/utilities/config/CheckBuildStyle.sh 'APACHE:source'`" = "1" ] )
+		then
+			${HOME}/providerscripts/webserver/configuration/InstallApacheConfigurationForReverseProxyFromSource.sh
+		fi	
+  	fi
 	if ( [ "`${HOME}/utilities/config/CheckConfigValue.sh WEBSERVERCHOICE:NGINX`" = "1" ] )
 	then
-		${HOME}/providerscripts/webserver/configuration/InstallNginxConfigurationForReverseProxy.sh
+ 		if ( [ "`${HOME}/utilities/config/CheckBuildStyle.sh 'NGINX:repo'`" = "1" ] || [ "`${HOME}/utilities/config/CheckBuildStyle.sh 'NGINX:cloud-init'`" = "1" ] )
+		then
+			${HOME}/providerscripts/webserver/configuration/InstallNginxConfigurationForReverseProxyFromRepo.sh		
+		elif ( [ "`${HOME}/utilities/config/CheckBuildStyle.sh 'NGINX:source'`" = "1" ] )
+		then
+			${HOME}/providerscripts/webserver/configuration/InstallNginxConfigurationForReverseProxyFromSource.sh
+		fi		
+	fi
+     	if ( [ "`${HOME}/utilities/config/CheckConfigValue.sh WEBSERVERCHOICE:LIGHTTPD`" = "1" ] )
+    	then
+ 		if ( [ "`${HOME}/utilities/config/CheckBuildStyle.sh 'LIGHTTPD:repo'`" = "1" ] || [ "`${HOME}/utilities/config/CheckBuildStyle.sh 'LIGHTTPD:cloud-init'`" = "1" ] )
+		then
+			${HOME}/providerscripts/webserver/configuration/InstallLighttpdConfigurationForReverseProxyFromRepo.sh		
+		elif ( [ "`${HOME}/utilities/config/CheckBuildStyle.sh 'LIGHTTPD:source'`" = "1" ] )
+		then
+			${HOME}/providerscripts/webserver/configuration/InstallLighttpdConfigurationForReverseProxyFromSource.sh
+		fi    	
 	fi
 fi
 
@@ -50,22 +72,33 @@ if ( [ "${BUILDOS}" = "debian" ] )
 then
     if ( [ "`${HOME}/utilities/config/CheckConfigValue.sh WEBSERVERCHOICE:APACHE`" = "1" ] )
     then
-        ${HOME}/providerscripts/webserver/configuration/InstallApacheConfigurationForReverseProxy.sh
+ 		if ( [ "`${HOME}/utilities/config/CheckBuildStyle.sh 'APACHE:repo'`" = "1" ] || [ "`${HOME}/utilities/config/CheckBuildStyle.sh 'APACHE:cloud-init'`" = "1" ] )
+		then
+			${HOME}/providerscripts/webserver/configuration/InstallApacheConfigurationForReverseProxyFromRepo.sh		
+		elif ( [ "`${HOME}/utilities/config/CheckBuildStyle.sh 'APACHE:source'`" = "1" ] )
+		then
+			${HOME}/providerscripts/webserver/configuration/InstallApacheConfigurationForReverseProxyFromSource.sh
+		fi	
     fi
     if ( [ "`${HOME}/utilities/config/CheckConfigValue.sh WEBSERVERCHOICE:NGINX`" = "1" ] )
     then
-        ${HOME}/providerscripts/webserver/configuration/InstallNginxConfigurationForReverseProxy.sh
+ 		if ( [ "`${HOME}/utilities/config/CheckBuildStyle.sh 'NGINX:repo'`" = "1" ] || [ "`${HOME}/utilities/config/CheckBuildStyle.sh 'NGINX:cloud-init'`" = "1" ] )
+		then
+			${HOME}/providerscripts/webserver/configuration/InstallNginxConfigurationForReverseProxyFromRepo.sh		
+		elif ( [ "`${HOME}/utilities/config/CheckBuildStyle.sh 'NGINX:source'`" = "1" ] )
+		then
+			${HOME}/providerscripts/webserver/configuration/InstallNginxConfigurationForReverseProxyFromSource.sh
+		fi	
     fi
+	if ( [ "`${HOME}/utilities/config/CheckConfigValue.sh WEBSERVERCHOICE:LIGHTTPD`" = "1" ] )
+    	then
+ 		if ( [ "`${HOME}/utilities/config/CheckBuildStyle.sh 'LIGHTTPD:repo'`" = "1" ] || [ "`${HOME}/utilities/config/CheckBuildStyle.sh 'LIGHTTPD:cloud-init'`" = "1" ] )
+		then
+			${HOME}/providerscripts/webserver/configuration/InstallLighttpdConfigurationForReverseProxyFromRepo.sh		
+		elif ( [ "`${HOME}/utilities/config/CheckBuildStyle.sh 'LIGHTTPD:source'`" = "1" ] )
+		then
+			${HOME}/providerscripts/webserver/configuration/InstallLighttpdConfigurationForReverseProxyFromSource.sh
+		fi    
+	fi
 fi
 
-if ( [ "${BUILDOS}" = "debian" ] )
-then
-    if ( [ "`${HOME}/utilities/config/CheckConfigValue.sh WEBSERVERCHOICE:LIGHTTPD`" = "1" ] )
-    then
-        ${HOME}/providerscripts/webserver/configuration/InstallLighttpdConfigurationForReverseProxy.sh
-    fi
-    if ( [ "`${HOME}/utilities/config/CheckConfigValue.sh WEBSERVERCHOICE:LIGHTTPD`" = "1" ] )
-    then
-        ${HOME}/providerscripts/webserver/configuration/InstallLighttpdConfigurationForReverseProxy.sh
-    fi
-fi
