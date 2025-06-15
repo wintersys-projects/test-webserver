@@ -45,10 +45,10 @@ then
 	then
 		if ( [ "`${HOME}/utilities/config/CheckBuildStyle.sh 'NGINX:repo'`" = "1" ] || [ "`${HOME}/utilities/config/CheckBuildStyle.sh 'NGINX:cloud-init'`" = "1" ] )
 		then
-			. ${HOME}/providerscripts/webserver/configuration/InstallNginxConfigurationFromRepo.sh
+			. ${HOME}/providerscripts/webserver/configuration/InstallNginxConfigurationForWebserverFromRepo.sh
 		elif ( [ "`${HOME}/utilities/config/CheckBuildStyle.sh 'NGINX:source'`" = "1" ] )
 		then
-			. ${HOME}/providerscripts/webserver/configuration/InstallNginxConfigurationFromSource.sh
+			. ${HOME}/providerscripts/webserver/configuration/InstallNginxConfigurationForWebserverFromSource.sh
 		fi
   		#customise by application
 		. ${HOME}/providerscripts/webserver/configuration/CustomiseNginxByApplication.sh
@@ -64,10 +64,10 @@ then
 	then
 		if ( [ "`${HOME}/utilities/config/CheckBuildStyle.sh 'APACHE:repo'`" = "1" ] || [ "`${HOME}/utilities/config/CheckBuildStyle.sh 'APACHE:cloud-init'`" = "1" ] )
 		then
-			. ${HOME}/providerscripts/webserver/configuration/InstallApacheConfigurationFromRepo.sh
+			. ${HOME}/providerscripts/webserver/configuration/InstallApacheConfigurationForWebserverFromRepo.sh
 		elif ( [ "`${HOME}/utilities/config/CheckBuildStyle.sh 'APACHE:source'`" = "1" ] )
 		then
-			. ${HOME}/providerscripts/webserver/configuration/InstallApacheConfigurationFromSource.sh 
+			. ${HOME}/providerscripts/webserver/configuration/InstallApacheConfigurationForWebserverFromSource.sh 
 		fi
 		#customise by application
 		. ${HOME}/providerscripts/webserver/configuration/CustomiseApacheByApplication.sh
@@ -83,10 +83,10 @@ then
 	then
 		if ( [ "`${HOME}/utilities/config/CheckBuildStyle.sh 'LIGHTTPD:repo'`" = "1" ]  || [ "`${HOME}/utilities/config/CheckBuildStyle.sh 'LIGHTTPD:cloud-init'`" = "1" ] )
 		then
-			. ${HOME}/providerscripts/webserver/configuration/InstallLighttpdConfigurationFromRepo.sh
+			. ${HOME}/providerscripts/webserver/configuration/InstallLighttpdConfigurationForWebserverFromRepo.sh
 		elif ( [ "`${HOME}/utilities/config/CheckBuildStyle.sh 'LIGHTTPD:source'`" = "1" ] )
 		then
-			. ${HOME}/providerscripts/webserver/configuration/InstallLighttpdConfigurationFromSource.sh 
+			. ${HOME}/providerscripts/webserver/configuration/InstallLighttpdConfigurationForWebserverFromSource.sh 
 		fi
 		#customise by application
 		. ${HOME}/providerscripts/webserver/configuration/CustomiseLighttpdByApplication.sh
