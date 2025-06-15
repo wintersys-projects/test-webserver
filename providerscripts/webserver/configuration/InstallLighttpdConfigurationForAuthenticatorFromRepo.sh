@@ -38,16 +38,16 @@ then
 	/bin/rm /etc/lighttpd/lighttpd.conf
 fi
 
-if ( [ -f ${HOME}/providerscripts/webserver/configuration/authenticator/lighttpd/online/source/lighttpd.conf ] )
+if ( [ -f ${HOME}/providerscripts/webserver/configuration/authenticator/lighttpd/online/repo/lighttpd.conf ] )
 then
-	/bin/cp ${HOME}/providerscripts/webserver/configuration/authenticator/lighttpd/online/source/lighttpd.conf /etc/lighttpd/lighttpd.conf
+	/bin/cp ${HOME}/providerscripts/webserver/configuration/authenticator/lighttpd/online/repo/lighttpd.conf /etc/lighttpd/lighttpd.conf
 fi
 
-if ( [ -f ${HOME}/providerscripts/webserver/configuration/authenticator/lighttpd/online/source/modules.conf ] )
+if ( [ -f ${HOME}/providerscripts/webserver/configuration/authenticator/lighttpd/online/repo/modules.conf ] )
 then
 	if ( [ ! -f /etc/lighttpd/modules.conf ] )
 	then
-		/bin/cp ${HOME}/providerscripts/webserver/configuration/authenticator/lighttpd/online/source/modules.conf /etc/lighttpd/modules.conf
+		/bin/cp ${HOME}/providerscripts/webserver/configuration/authenticator/lighttpd/online/repo/modules.conf /etc/lighttpd/modules.conf
 	fi
 fi    
 
@@ -57,15 +57,15 @@ then
 
 	if ( [ "`/bin/echo ${port} | /bin/grep -o "^[0-9]*$"`" = "" ] )
 	then
-		if ( [ -f ${HOME}/providerscripts/webserver/configuration/authenticator/lighttpd/online/source/fastcgi_socket.conf ] )
+		if ( [ -f ${HOME}/providerscripts/webserver/configuration/authenticator/lighttpd/online/repo/fastcgi_socket.conf ] )
 		then
-			/bin/sed -i -e "/XXXXFASTCGIXXXX/{r ${HOME}/providerscripts/webserver/configuration/authenticator/lighttpd/online/source/fastcgi_socket.conf" -e "d}" /etc/lighttpd/lighttpd.conf
+			/bin/sed -i -e "/XXXXFASTCGIXXXX/{r ${HOME}/providerscripts/webserver/configuration/authenticator/lighttpd/online/repo/fastcgi_socket.conf" -e "d}" /etc/lighttpd/lighttpd.conf
 			/bin/sed -i "s/XXXXPHPVERSIONXXXX/${PHP_VERSION}/" /etc/lighttpd/lighttpd.conf
 		fi
 	else
-		if ( [ -f ${HOME}/providerscripts/webserver/configuration/authenticator/lighttpd/online/source/fastcgi_port.conf ] )
+		if ( [ -f ${HOME}/providerscripts/webserver/configuration/authenticator/lighttpd/online/repo/fastcgi_port.conf ] )
 		then
-			/bin/sed -i -e "/XXXXFASTCGIXXXX/{r ${HOME}/providerscripts/webserver/configuration/authenticator/lighttpd/online/source/fastcgi_port.conf" -e "d}" /etc/lighttpd/lighttpd.conf
+			/bin/sed -i -e "/XXXXFASTCGIXXXX/{r ${HOME}/providerscripts/webserver/configuration/authenticator/lighttpd/online/repo/fastcgi_port.conf" -e "d}" /etc/lighttpd/lighttpd.conf
 			/bin/sed -i "s/XXXXPORTXXXX/${port}/" /etc/lighttpd/lighttpd.conf
 		fi
 	fi
@@ -81,7 +81,7 @@ then
  	/bin/echo "/etc/lighttpd/lighttpd.conf" > ${HOME}/runtime/WEBSERVER_CONFIG_LOCATION.dat
 fi
 
-/bin/cp ${HOME}/providerscripts/webserver/configuration/authenticator/lighttpd/online/source/modules.conf /etc/lighttpd/modules.conf
+/bin/cp ${HOME}/providerscripts/webserver/configuration/authenticator/lighttpd/online/repo/modules.conf /etc/lighttpd/modules.conf
 
 /bin/rm -r /var/www/html/*
 /bin/cp ${HOME}/providerscripts/webserver/configuration/authenticator/index.php /var/www/html/index.php
