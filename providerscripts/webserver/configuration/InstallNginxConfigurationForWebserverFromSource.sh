@@ -77,7 +77,7 @@ else
 	fi
 fi
 
-if ( ( [ "${MOD_SECURITY}" = "1" ] && [ "${NO_REVERSE_PROXY}" = "0" ] && [ "`/usr/bin/hostname | /bin/grep '^wp-'`" != "" ] ) || ( [ "${MOD_SECURITY}" = "1" ] && [ "`/usr/bin/hostname | /bin/grep '\-rp-'`" != "" ] ) )
+if ( [ "${MOD_SECURITY}" = "1" ] && [ "${NO_REVERSE_PROXY}" = "0" ] )
 thenthen
 	/bin/sed -i -e "/#XXXXMODSECURITYXXXX/{r ${HOME}/providerscripts/webserver/configuration/${APPLICATION}/nginx/online/source/modsecurity.conf" -e "d}" /etc/nginx/sites-available/${WEBSITE_NAME}
 fi
