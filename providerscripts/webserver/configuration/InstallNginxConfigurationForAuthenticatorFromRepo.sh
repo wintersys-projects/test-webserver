@@ -30,7 +30,7 @@ DNS_CHOICE="`${HOME}/utilities/config/ExtractConfigValue.sh 'DNSCHOICE'`"
 USER_EMAIL_DOMAIN="`${HOME}/utilities/config/ExtractConfigValue.sh 'USEREMAILDOMAIN'`"
 PHP_VERSION="`${HOME}/utilities/config/ExtractConfigValue.sh 'PHPVERSION'`"
 
-/bin/cp ${HOME}/providerscripts/webserver/configuration/authenticator/nginx/online/source/nginx.conf /etc/nginx
+/bin/cp ${HOME}/providerscripts/webserver/configuration/authenticator/nginx/online/repo/nginx.conf /etc/nginx
 /bin/chown www-data:www-data /etc/nginx/nginx.conf
 /bin/chmod 644 /etc/nginx/nginx.conf
 
@@ -48,14 +48,14 @@ fi
 
 /bin/rm /etc/nginx/sites-enabled/* 2>/dev/null
 
-/bin/cp ${HOME}/providerscripts/webserver/configuration/authenticator/nginx/online/source/site-available.conf /etc/nginx/sites-available/${WEBSITE_NAME}
+/bin/cp ${HOME}/providerscripts/webserver/configuration/authenticator/nginx/online/repo/site-available.conf /etc/nginx/sites-available/${WEBSITE_NAME}
 /bin/chown www-data:www-data /etc/nginx/sites-available/${WEBSITE_NAME}
 /bin/chmod 644 /etc/nginx/sites-available/${WEBSITE_NAME}
 
 /bin/sed -i "s/XXXXWEBSITEURLXXXX/${WEBSITE_URL}/g" /etc/nginx/sites-available/${WEBSITE_NAME}
 /bin/sed -i "s,XXXXHOMEXXXX,${HOME},g" /etc/nginx/sites-available/${WEBSITE_NAME}
 
-/bin/cp ${HOME}/providerscripts/webserver/configuration/authenticator/nginx/online/source/blockuseragents.rules /etc/nginx/
+/bin/cp ${HOME}/providerscripts/webserver/configuration/authenticator/nginx/online/repo/blockuseragents.rules /etc/nginx/
 /bin/chown www-data:www-data /etc/nginx/blockuseragents.rules
 /bin/chmod 644 /etc/nginx/blockuseragents.rules
 
@@ -65,15 +65,15 @@ port="`${HOME}/utilities/config/ExtractBuildStyleValues.sh "PHP" "stripped" | /u
 
 if ( [ "`/bin/echo ${port} | /bin/grep -o "^[0-9]*$"`" = "" ] )
 then
-	if ( [ -f ${HOME}/providerscripts/webserver/configuration/authenticator/nginx/online/source/fastcgi_socket.conf ] )
+	if ( [ -f ${HOME}/providerscripts/webserver/configuration/authenticator/nginx/online/repo/fastcgi_socket.conf ] )
 	then
-		/bin/sed -i -e "/XXXXFASTCGIXXXX/{r ${HOME}/providerscripts/webserver/configuration/authenticator/nginx/online/source/fastcgi_socket.conf" -e "d}" /etc/nginx/sites-available/${WEBSITE_NAME}
+		/bin/sed -i -e "/XXXXFASTCGIXXXX/{r ${HOME}/providerscripts/webserver/configuration/authenticator/nginx/online/repo/fastcgi_socket.conf" -e "d}" /etc/nginx/sites-available/${WEBSITE_NAME}
 		/bin/sed -i "s/XXXXPHPVERSIONXXXX/${PHP_VERSION}/" /etc/nginx/sites-available/${WEBSITE_NAME}
 	fi
 else
-	if ( [ -f ${HOME}/providerscripts/webserver/configuration/authenticator/nginx/online/source/fastcgi_port.conf ] )
+	if ( [ -f ${HOME}/providerscripts/webserver/configuration/authenticator/nginx/online/repo/fastcgi_port.conf ] )
 	then
-		/bin/sed -i -e "/XXXXFASTCGIXXXX/{r ${HOME}/providerscripts/webserver/configuration/authenticator/nginx/online/source/fastcgi_port.conf" -e "d}" /etc/nginx/sites-available/${WEBSITE_NAME}
+		/bin/sed -i -e "/XXXXFASTCGIXXXX/{r ${HOME}/providerscripts/webserver/configuration/authenticator/nginx/online/repo/fastcgi_port.conf" -e "d}" /etc/nginx/sites-available/${WEBSITE_NAME}
 		/bin/sed -i "s/XXXXPORTXXXX/${port}/" /etc/nginx/sites-available/${WEBSITE_NAME}
 	fi
 fi
